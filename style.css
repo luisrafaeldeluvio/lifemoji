@@ -9,6 +9,17 @@
 
 html, body {
     height: 100%;
+    width: 100%;
+}
+
+body > nav {
+    display: flex; 
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+body > nav > section {
+    flex-grow: 2;
 }
 
 main {
@@ -35,6 +46,7 @@ aside > nav {
 aside > nav > ul {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: inherit;
+    list-style-type: none;
 }
