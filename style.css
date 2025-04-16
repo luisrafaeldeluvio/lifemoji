@@ -94,32 +94,44 @@ body {
 .main-container {
     flex-grow: 1;
     background: blue;
-    padding: 10px 10px 0 0;
+    padding: 10px 10px 10px 0;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    height: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .main-journal {
-    width: 100%;
     height: 100%;
-    
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 20px;
+    background: white;
+    border: 3px rgb(230, 230, 230) solid;
+    border-left: none;
+    border-top: none;
+}
+
+.main-journalContainer {
+    height: inherit;
     background: white
     repeating-linear-gradient(
         black, black 1px, /* line thickness */
-        transparent 1px, transparent 30px /* line count */
+        transparent 1px, transparent 25px /* line count */
       );
-      background-size: 30px 30px; 
+    background-size: 25px 25px;
 }
 
+
 .main-nav {  
-    height: 100%;
+    height: 70%;
 }
 
 .main-nav ul {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: inherit;
+    height: 100%;
     list-style-type: none;
 }
 
@@ -127,4 +139,14 @@ body {
     background: red;
     padding: 2.5px;
     font-size: 0.9em;
+    right: 20%;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 1.5em;
+}
+
+.main li.-currentNav { /* make it so that all the tabs above the current tab also dissapear */
+    background: transparent;
+    box-shadow: none;
+    font-size: 0;
 }
