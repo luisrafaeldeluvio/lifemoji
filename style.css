@@ -38,6 +38,17 @@ body {
 .playerInfo-profile {
     /* background: lightblue; blue or pink depending on gender */
     transform: rotate(2deg);
+    background: white;
+}
+
+.playerInfo-profile img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    width: 100px;
+    padding: 7px;
+    padding-bottom: 21px;
 }
 
 .playerInfo-info {
@@ -80,14 +91,24 @@ body {
     height: calc(100% - 1em - 80.8px);
 }
 
-.main-journal {
+.main-container {
     flex-grow: 1;
+    background: blue;
+    padding: 10px 10px 0 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.main-journal {
+    width: 100%;
+    height: 100%;
+    
     background: white
     repeating-linear-gradient(
         black, black 1px, /* line thickness */
         transparent 1px, transparent 30px /* line count */
       );
-    background-size: 30px 30px; 
+      background-size: 30px 30px; 
 }
 
 .main-nav {  
