@@ -75,11 +75,19 @@ body {
     justify-content: space-evenly;
     align-items: stretch;
     margin: 0.5em;
+    margin-top: 0;
+    margin-left: 0;
     height: calc(100% - 1em - 80.8px);
 }
 
 .main-journal {
     flex-grow: 1;
+    background: white
+    repeating-linear-gradient(
+        black, black 1px, /* line thickness */
+        transparent 1px, transparent 30px /* line count */
+      );
+    background-size: 30px 30px; 
 }
 
 .main-nav {  
@@ -92,4 +100,10 @@ body {
     justify-content: space-evenly;
     height: inherit;
     list-style-type: none;
+}
+
+.main li {
+    background: red;
+    padding: 2.5px;
+    font-size: 0.9em;
 }
