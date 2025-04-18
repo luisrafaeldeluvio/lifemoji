@@ -1,12 +1,12 @@
 import { fullName } from 'full-name-generator';
 
-class stats {
+class Stats {
     constructor({
-        joy = this.newStats(),
-        health = this.newStats(),
-        smarts = this.newStats(),
-        looks = this.newStats(),
-        karma = this.newStats()
+        joy = this.newStat(),
+        health = this.newStat(),
+        smarts = this.newStat(),
+        looks = this.newStat(),
+        karma = this.newStat()
     } = {}) {
         this.joy = joy;
         this.health = health;
@@ -19,17 +19,17 @@ class stats {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    newStats() {
-        return stats.randomInt(1, 100);
+    newStat() {
+        return Stats.randomInt(1, 100);
     }
 }
 
-class npc {  // npc extends stats?
+class Npc {
     constructor({
-        birthday = npc.newBirthday(),
-        sex = npc.newSex()
+        birthday = Npc.newBirthday(),
+        sex = Npc.newSex()
     } = {}) {
-        this.id = npc.newId();
+        this.id = Npc.newId();
         this.birthday = birthday;
         this.sex = sex;
         this.stats = new stats();
@@ -43,7 +43,7 @@ class npc {  // npc extends stats?
         const x = '1234567890abcdefghijklmnopqrstuvwxyz';
         let id = '';
         while (id.length < 16) {
-            id += x.charAt(npc.randomInt(0, x.length));
+            id += x.charAt(Npc.randomInt(0, x.length));
         }
         return id;
     }
@@ -54,18 +54,31 @@ class npc {  // npc extends stats?
             'May', 'June', 'July', 'Agust',
             'September', 'October', 'November', 'December'
         ]
-        return `${months[npc.randomInt(0,11)]} ${npc.randomInt(1,28)}`;
+        return `${months[Npc.randomInt(0,11)]} ${Npc.randomInt(1,28)}`;
     }
 
     static newSex()  {
-        return (npc.randomInt(0, 1) === 0) ? "male" : "female";
+        return (Npc.randomInt(0, 1) === 0) ? "male" : "female";
+    }
+
+    get getId() {
+        return this.id
+    }
+
+    get getBirthday() {
+        return this.birthday;
     }
 }
 
+// class Player extends Npc {}
+
 const y = []
 
-y.push(new npc({ sex: 'male'}))
-y.push(new npc())
+for (let id = 0; id < 100; id++) {
+    y.push(new Npc())
+}
 
-console.log(y);
+const x = y.find(a => a.birthday === 'January 1')
+
+console.log(x);
 
