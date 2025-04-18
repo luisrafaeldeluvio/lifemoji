@@ -1,5 +1,29 @@
 import { fullName } from 'full-name-generator';
 
+class stats {
+    constructor({
+        joy = this.newStats(),
+        health = this.newStats(),
+        smarts = this.newStats(),
+        looks = this.newStats(),
+        karma = this.newStats()
+    } = {}) {
+        this.joy = joy;
+        this.health = health;
+        this.smarts = smarts;
+        this.looks = looks;
+        this.karma = karma;
+    }
+
+    static randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    newStats() {
+        return stats.randomInt(1, 100);
+    }
+}
+
 class npc {  // npc extends stats?
     constructor({
         birthday = npc.newBirthday(),
@@ -8,6 +32,7 @@ class npc {  // npc extends stats?
         this.id = npc.newId();
         this.birthday = birthday;
         this.sex = sex;
+        this.stats = new stats();
     }
 
     static randomInt(min, max) {
@@ -25,8 +50,8 @@ class npc {  // npc extends stats?
 
     static newBirthday() {
         const months = [
-            'January', 'February', 'March', 'April', 
-            'May', 'June', 'July', 'Agust', 
+            'January', 'February', 'March', 'April',
+            'May', 'June', 'July', 'Agust',
             'September', 'October', 'November', 'December'
         ]
         return `${months[npc.randomInt(0,11)]} ${npc.randomInt(1,28)}`;
@@ -35,7 +60,6 @@ class npc {  // npc extends stats?
     static newSex()  {
         return (npc.randomInt(0, 1) === 0) ? "male" : "female";
     }
-    
 }
 
 const y = []
