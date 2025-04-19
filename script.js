@@ -2,17 +2,17 @@ import { fullName } from 'full-name-generator';
 
 class Stats {
     constructor({
-        joy = this.newStat(),
-        health = this.newStat(),
-        smarts = this.newStat(),
-        looks = this.newStat(),
-        karma = this.newStat()
+        JOY = this.newStat(),
+        HEALTH = this.newStat(),
+        SMARTS = this.newStat(),
+        LOOKS = this.newStat(),
+        KARMA = this.newStat()
     } = {}) {
-        this.joy = joy;
-        this.health = health;
-        this.smarts = smarts;
-        this.looks = looks;
-        this.karma = karma;
+        this._joy = JOY;
+        this._health = HEALTH;
+        this._smarts = SMARTS;
+        this._looks = LOOKS;
+        this._karma = KARMA;
     }
 
     static randomInt(min, max) {
@@ -22,17 +22,59 @@ class Stats {
     newStat() {
         return Stats.randomInt(1, 100);
     }
+
+    get joy() {
+        return this._joy;
+    }
+
+    get health() {
+        return this._health;
+    }
+
+    get smarts() {
+        return this._smarts;
+    }
+
+    get looks() {
+        return this._looks;
+    }
+
+    get karma() {
+        return this._karma;
+    }
+
+    set joy(n) {
+        this._joy += n;
+    }
+
+    set health(n) {
+        this._health += n;
+    }
+
+    set smarts(n) {
+        this._smarts += n;
+    }
+
+    set looks(n) {
+        this._looks += n;
+    }
+
+    set karma(n) {
+        this._karma += n;
+    }
+
+    
 }
 
 class Npc {
     constructor({
-        birthday = Npc.newBirthday(),
-        sex = Npc.newSex()
+        BIRTHDAY = Npc.newBirthday(),
+        SEX = Npc.newSex()
     } = {}) {
-        this.id = Npc.newId();
-        this.birthday = birthday;
-        this.sex = sex;
-        this.stats = new stats();
+        this._id = Npc.newId();
+        this._birthday = BIRTHDAY;
+        this._sex = SEX;
+        this._stats = new Stats();
     }
 
     static randomInt(min, max) {
@@ -61,28 +103,41 @@ class Npc {
         return (Npc.randomInt(0, 1) === 0) ? "male" : "female";
     }
 
-    get getId() {
-        return this.id
+    get id() {
+        return this._id
     }
 
-    get getBirthday() {
-        return this.birthday;
+    get birthday() {
+        return this._birthday;
     }
 
-    get getSex() {
-        return this.sex;
+    get sex() {
+        return this._sex;
+    }
+
+    get stats() {
+        return this._stats;
     }
 }
 
 // class Player extends Npc {}
 
+
+
+// Testing area, dont include -----------------------------------------------
+
 const y = []
 
-for (let id = 0; id < 100; id++) {
+for (let id = 0; id < 1; id++) {
     y.push(new Npc())
 }
 
-const x = y.find(a => a.birthday === 'January 1')
+//const x = y.find(a => a.stats.karma === 1)
 
-console.log(x);
+
+y[0].stats.karma = 2000;
+
+console.log(y[0].stats.karma);
+
+//console.log(x);
 
