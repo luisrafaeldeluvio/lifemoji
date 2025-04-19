@@ -68,6 +68,10 @@ class Npc {
     get getBirthday() {
         return this.birthday;
     }
+
+    get getSex() {
+        return this.sex;
+    }
 }
 
 // class Player extends Npc {}
