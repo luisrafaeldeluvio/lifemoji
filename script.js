@@ -1,6 +1,8 @@
-import { fullName } from 'full-name-generator';
+import { firstName, lastName } from 'full-name-generator';
 
 import places from "./places.json" with {type: 'json'};
+
+let player = {};
 
 class Stats {
     constructor({
@@ -67,16 +69,12 @@ class Stats {
 }
 
 class Npc {
-    constructor({
-        BIRTHDAY = Npc.newBirthday(),
-        SEX = Npc.newSex(),
-        LOCATION
-    } = {}) {
+    constructor() {
         this._id = Npc.newId();
-        this._birthday = BIRTHDAY;
-        this._sex = SEX;
+        this._birthday = Npc.newBirthday();
+        this._sex = Npc.newSex();
         this._stats = new Stats();
-        this._location = LOCATION;
+        this._location = Npc.newLocation();
     }
 
     static randomInt(min, max) {
@@ -105,6 +103,15 @@ class Npc {
         return (Npc.randomInt(0, 1) === 0) ? "male" : "female";
     }
 
+    static newLocation() {
+        if (Npc.randomInt(1, 100) < 90) {
+            return player._location;
+        } else {
+            const loc = Object.keys(places);
+            return loc[Npc.randomInt(0, loc.length)];
+        }
+    }
+
     get id() {
         return this._id
     }
@@ -127,21 +134,20 @@ class Npc {
 }
 
 class Player extends Npc {
-    constructor (LOCATION) {
+    constructor ({LOCATION}) {
         super();
-        this._location = LOCATION;
+        this._location = LOCATION ?? this._location;
     }
 
 }
 
 
-let player = new Player('italy')
-let npc = new Npc({ LOCATION: player._location})
+Object.assign(player, new Player({LOCATION: 'italy'}))
+let npc = new Npc()
 
 console.log(npc);
-console.log(player.location);
-
-
+console.log(player);
+//console.log(Object.keys(places));
 
 
 // Testing area, dont include -----------------------------------------------
