@@ -1,5 +1,7 @@
 import { fullName } from 'full-name-generator';
 
+import places from "./places.json" with {type: 'json'};
+
 class Stats {
     constructor({
         JOY = this.newStat(),
@@ -62,19 +64,19 @@ class Stats {
     set karma(n) {
         this._karma += n;
     }
-
-    
 }
 
 class Npc {
     constructor({
         BIRTHDAY = Npc.newBirthday(),
-        SEX = Npc.newSex()
+        SEX = Npc.newSex(),
+        LOCATION
     } = {}) {
         this._id = Npc.newId();
         this._birthday = BIRTHDAY;
         this._sex = SEX;
         this._stats = new Stats();
+        this._location = LOCATION;
     }
 
     static randomInt(min, max) {
@@ -118,26 +120,43 @@ class Npc {
     get stats() {
         return this._stats;
     }
+
+    get location() {
+        return this._location;
+    }
 }
 
-// class Player extends Npc {}
+class Player extends Npc {
+    constructor (LOCATION) {
+        super();
+        this._location = LOCATION;
+    }
+
+}
+
+
+let player = new Player('italy')
+let npc = new Npc({ LOCATION: player._location})
+
+console.log(npc);
+console.log(player.location);
+
 
 
 
 // Testing area, dont include -----------------------------------------------
 
-const y = []
+// const y = []
 
-for (let id = 0; id < 1; id++) {
-    y.push(new Npc())
-}
+// for (let id = 0; id < 1; id++) {
+//     y.push(new Npc())
+// }
 
-//const x = y.find(a => a.stats.karma === 1)
+// //const x = y.find(a => a.stats.karma === 1)
 
 
-y[0].stats.karma = 2000;
+// y[0].stats.karma = 2000;
 
-console.log(y[0].stats.karma);
+// console.log(y[0].stats.karma);
 
 //console.log(x);
-
