@@ -1,6 +1,6 @@
 import { firstName, lastName } from 'full-name-generator';
 
-import places from "./places.json" with {type: 'json'};
+import places from "../places.json" with {type: 'json'};
 
 import { Stats } from './stats.js';
 import { Npc } from './npc.js';

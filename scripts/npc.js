@@ -1,6 +1,6 @@
 import { Stats } from "./stats.js";
 import { player } from "./playerCurrent.js";
-import places from "./places.json" with {type: 'json'};
+import places from "../places.json" with {type: 'json'};
 
 class Npc {
     constructor() {
