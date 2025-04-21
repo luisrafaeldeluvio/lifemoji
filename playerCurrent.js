@@ -1,0 +1,3 @@
+let player = {};
+
+export { player };
