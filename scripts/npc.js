@@ -1,18 +1,34 @@
+import { firstName, lastName } from 'full-name-generator';
+
 import { Stats } from "./stats.js";
 import { player } from "./playerCurrent.js";
 import places from "../places.json" with {type: 'json'};
 
 class Npc {
-    constructor() {
+    constructor({
+        birthday, sex,
+        stats, location,
+        firstname, lastname
+    } = {}) {
         this._id = Npc.newId();
-        this._birthday = Npc.newBirthday();
-        this._sex = Npc.newSex();
-        this._stats = new Stats();
-        this._location = Npc.newLocation();
+        this._birthday = birthday ?? Npc.newBirthday();
+        this._sex = sex ?? Npc.newSex();
+        this._stats = stats ?? new Stats();
+        this._location = location ?? Npc.newLocation();
+        this._firstname = firstname ?? Npc.newFirstName(this._location, this._sex);
+        this._lastname = lastname ?? Npc.newLastName(this._location, this._sex);
     }
 
     static randomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    static newFirstName(location, sex) {
+        return firstName(places[location]['iso'], (sex === 'male') ? 0 : 1, 1)
+    }
+
+    static newLastName(location, sex) {
+        return lastName(places[location]['iso'], (sex === 'male') ? 0 : 1, 1)
     }
 
     static newId() {
@@ -38,7 +54,7 @@ class Npc {
     }
 
     static newLocation() {
-        if (Npc.randomInt(1, 100) < 90) {
+        if (Npc.randomInt(1, 100) < 90 && player._location !== undefined) {
             return player._location;
         } else {
             const loc = Object.keys(places);
@@ -64,6 +80,18 @@ class Npc {
 
     get location() {
         return this._location;
+    }
+
+    get firstname() {
+        return this._firstname;
+    }
+
+    get lastname() {
+        return this._lastname;
+    }
+
+    get fullName() {
+        return this.firstname, this.lastname;
     }
 }
 
