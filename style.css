@@ -122,6 +122,10 @@ body {
     background-size: 25px 25px;
 }
 
+.main-journalContainer {
+    padding-top: 0.5lh;
+}
+
 
 .main-nav {  
     height: 70%;

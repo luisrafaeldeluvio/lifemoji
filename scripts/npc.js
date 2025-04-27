@@ -12,6 +12,7 @@ class Npc {
     } = {}) {
         this._id = Npc.newId();
         this._birthday = birthday ?? Npc.newBirthday();
+        this._age = 0;
         this._sex = sex ?? Npc.newSex();
         this._stats = stats ?? new Stats();
         this._location = location ?? Npc.newLocation();
@@ -41,12 +42,7 @@ class Npc {
     }
 
     static newBirthday() {
-        const months = [
-            'January', 'February', 'March', 'April',
-            'May', 'June', 'July', 'Agust',
-            'September', 'October', 'November', 'December'
-        ]
-        return `${months[Npc.randomInt(0,11)]} ${Npc.randomInt(1,28)}`;
+        return `${Npc.randomInt(1,12)}/${Npc.randomInt(1,28)}`
     }
 
     static newSex()  {
@@ -70,6 +66,10 @@ class Npc {
         return this._birthday;
     }
 
+    get age() {
+        return this._age;
+    }
+
     get sex() {
         return this._sex;
     }
@@ -82,16 +82,20 @@ class Npc {
         return this._location;
     }
 
-    get firstname() {
+    get firstName() {
         return this._firstname;
     }
 
-    get lastname() {
+    get lastName() {
         return this._lastname;
     }
 
     get fullName() {
-        return this.firstname, this.lastname;
+        return `${this._firstname} ${this._lastname}`;
+    }
+
+    set age(e) {
+        this._age = e;
     }
 }
 

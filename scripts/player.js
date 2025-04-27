@@ -4,12 +4,12 @@ class Player extends Npc {
     constructor ({
         birthday, sex,
         stats, location,
-        firstname, lastname
-    }) {
+        firstname, lastname, age
+    } = {}) {
         super({
             birthday, sex,
             stats, location,
-            firstname, lastname
+            firstname, lastname, age
         });
     }
 
