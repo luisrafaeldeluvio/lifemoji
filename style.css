@@ -1,156 +1,167 @@
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    /* background: WHITE; */
-    /* border: 0.5px solid black; */
-    size: 16px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* background: WHITE; */
+  /* border: 0.5px solid black; */
+  size: 16px;
 }
 
 @font-face {
-    font-family: OneStory;
-    src: url("OneStory.otf") format("opentype");
+  font-family: OneStory;
+  src: url("OneStory.otf") format("opentype");
 }
 
-html, body {
-    height: 100%;
-    width: 100%;
+html,
+body {
+  height: 100%;
+  width: 100%;
 }
 
 body {
-    font-family: OneStory, serif;
-    background: #ba8c63;
+  font-family: OneStory, serif;
+  background: #ba8c63;
 }
 
 .playerInfo {
-    display: flex; 
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 0.5em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0.5em;
 }
 
 .-section {
-    width: 100px;
-    height: 100px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .playerInfo-profile {
-    /* background: lightblue; blue or pink depending on gender */
-    transform: rotate(2deg);
-    background: white;
+  /* background: lightblue; blue or pink depending on gender */
+  transform: rotate(2deg);
+  background: white;
 }
 
 .playerInfo-profile img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 100px;
-    width: 100px;
-    padding: 7px;
-    padding-bottom: 21px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100px;
+  width: 100px;
+  padding: 7px;
+  padding-bottom: 21px;
 }
 
 .playerInfo-info {
-    background: yellow;
-    transform: rotate(-2deg);
-    padding: 10px;
+  background: yellow;
+  transform: rotate(-2deg);
+  padding: 10px;
 }
 
 .playerInfo-stats {
-    background: limegreen;
-    transform: rotate(1deg);
-    padding: 10px;
-    font-size: 0.8em;
+  background: limegreen;
+  transform: rotate(1deg);
+  padding: 10px;
+  font-size: 0.8em;
 }
 
-.playerInfo-profile::before { /* red pin */
-    content: "";
-    height: 10px;
-    width: 10px;
-    background-color: #bb0a0a;
-    border-radius: 50%;
-    display: inline-block;
-    bottom: 85%;
-    left: 45%;
-    position: absolute;
+.playerInfo-profile::before {
+  /* red pin */
+  content: "";
+  height: 10px;
+  width: 10px;
+  background-color: #bb0a0a;
+  border-radius: 50%;
+  display: inline-block;
+  bottom: 85%;
+  left: 45%;
+  position: absolute;
 }
 
 .playerInfo-btn {
-    width: 100%;
-    border: none;
+  width: 100%;
+  border: none;
 }
 
 .main {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: stretch;
-    margin: 0.5em;
-    margin-top: 0;
-    margin-left: 0;
-    height: calc(100% - 1em - 80.8px);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+  margin: 0.5em;
+  margin-top: 0;
+  margin-left: 0;
+  height: calc(100% - 1em - 80.8px);
 }
 
 .main-container {
-    flex-grow: 1;
-    background: blue;
-    padding: 10px 10px 10px 0;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    height: 70%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  flex-grow: 1;
+  background: blue;
+  padding: 10px 10px 10px 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  height: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .main-journal {
-    height: 100%;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 20px;
-    background: white;
-    border: 3px rgb(230, 230, 230) solid;
-    border-left: none;
-    border-top: none;
+  height: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 20px;
+  background: white;
+  border: 3px rgb(230, 230, 230) solid;
+  border-left: none;
+  border-top: none;
 }
 
-.main-journalContainer {
+/* .main-journalContainer {
     height: inherit;
     background: white
     repeating-linear-gradient(
-        black, black 1px, /* line thickness */
-        transparent 1px, transparent 25px /* line count */
+        black, black 1px, 
+        transparent 1px, transparent 25px 
       );
     background-size: 25px 25px;
+} */
+
+.main-journalContainer > span {
+  display: block;
+  padding-top: 0.25lh;
+  padding-bottom: 0.25lh;
 }
 
-.main-journalContainer {
-    padding-top: 0.5lh;
+.main-journalContainer > span::after {
+  content: " ";
+  height: 0.75px;
+  background-image: linear-gradient(black);
+  display: block;
 }
 
-
-.main-nav {  
-    height: 70%;
+.main-nav {
+  height: 70%;
 }
 
 .main-nav ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 100%;
-    list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  list-style-type: none;
 }
 
 .main li {
-    background: red;
-    padding: 2.5px;
-    font-size: 0.9em;
-    right: 20%;
-    position: relative;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height: 1.5em;
+  background: red;
+  padding: 2.5px;
+  font-size: 0.9em;
+  right: 20%;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 1.5em;
 }
 
-.main li.-currentNav { /* make it so that all the tabs above the current tab also dissapear */
-    background: transparent;
-    box-shadow: none;
-    font-size: 0;
+.main li.-currentNav {
+  /* make it so that all the tabs above the current tab also dissapear */
+  background: transparent;
+  box-shadow: none;
+  font-size: 0;
 }

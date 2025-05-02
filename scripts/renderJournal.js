@@ -1,21 +1,23 @@
 import journal from "../journal.json" with {type: 'json'};
 
 function renderJournal() {
-    const line = 16;
     let length = 0;
+    const line = 18;
     const finalRender = [];
-    for (let i = journal.length; i !== 0; i--) {
+    const journalObject = Object.keys(journal);
+    for (let i in journalObject) {
         if (length >= line) break;
-        finalRender.push(`Year ${i}\n`);
         length++
-
-        for (let j = 0; j < journal[journal.length - i].length; j++) {
+        const year = (Number(journalObject.length - i)).toString();
+        
+        for (let j in journal[year]) {
             if (length >= line) break;
-            finalRender.push(`${journal[journal.length - i][j]} \n`)
             length++
+            finalRender.push((journal[year][j]));
         }
+        finalRender.push(`Year ${year}`)
     }
-    return finalRender;
+    return finalRender.reverse();
 }
 
 export { renderJournal }

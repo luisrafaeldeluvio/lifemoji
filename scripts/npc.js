@@ -1,7 +1,6 @@
 import { firstName, lastName } from 'full-name-generator';
 
 import { Stats } from "./stats.js";
-import { player } from "./playerCurrent.js";
 import places from "../places.json" with {type: 'json'};
 
 class Npc {
@@ -50,12 +49,12 @@ class Npc {
     }
 
     static newLocation() {
-        if (Npc.randomInt(1, 100) < 90 && player._location !== undefined) {
-            return player._location;
-        } else {
+        // if (Npc.randomInt(1, 100) < 90 && player._location !== undefined) {
+        //     return player._location;
+        // } else {
             const loc = Object.keys(places);
             return loc[Npc.randomInt(0, loc.length)];
-        }
+        // }
     }
 
     get id() {
@@ -94,8 +93,32 @@ class Npc {
         return `${this._firstname} ${this._lastname}`;
     }
 
-    set age(e) {
-        this._age = e;
+    set birthday(value) {
+        this._birthday = value;
+    }
+
+    set age(value) {
+        this._age = value;
+    }
+
+    set sex(value) {
+        this._sex = value;
+    }
+
+    set stats(value) {
+        this._stats = value;
+    }
+
+    set location(value) {
+        this._location = value;
+    }
+
+    set firstName(value) {
+        this._firstname = value;
+    }
+
+    set lastName(value) {
+        this._lastname = value;
     }
 }
 
