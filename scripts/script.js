@@ -1,14 +1,34 @@
 import { Npc } from "./npc.js";
 import { Player } from "./player.js";
-import { renderJournal } from "./renderJournal.js";
+import { loadJournal, renderJournal } from "./renderJournal.js";
 import { simpleEvent } from "./events.js";
-import { readSave, writeSave } from "./saveManager.js";
+import {
+  readSave,
+  readKey,
+  readSaveByIndex,
+  writeSave,
+} from "./saveManager.js";
 
-const playerA = new Player();
+function newPlayer() {
+  const playerA = new Player();
+  writeSave("player", playerA);
+}
 
-console.log(playerA);
+const b = await readKey("player");
+const a = await readSave("player", b);
+console.log(a);
 
-writeSave("player", playerA);
+//const loadData = await readSave("player");
+
+// simpleEvent("Hello World2288!");
+
+// const playerData = await readSave("player", "quiglr7bppvuk681");
+// console.log("Player data:", playerData);
+
+loadJournal();
+
+// const Journal = await readSaveByIndex("journal", "year", 1);
+// console.log(Journal[3]);
 
 // document.getElementById("playerInfo-fullname").innerHTML = playerA.fullName;
 

@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: OneStory;
-  src: url("OneStory.otf") format("opentype");
+  src: url("./assets/OneStory.otf") format("opentype");
 }
 
 html,

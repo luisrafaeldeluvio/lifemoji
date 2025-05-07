@@ -1,7 +1,7 @@
 import { firstName, lastName } from 'full-name-generator';
 
 import { Stats } from "./stats.js";
-import places from "../places.json" with {type: 'json'};
+import places from "../assets/places.json" with {type: 'json'};
 
 class Npc {
     constructor({
