@@ -20,41 +20,50 @@
 
 import { readSaveByIndex } from "./saveManager.js";
 
-async function loadJournal() {
+function loadJournal() {
   let maxLine = 18;
   const journal = [];
 
   const request = window.indexedDB.open("PlayerData", 1);
 
-  request.onsuccess = () => {
-    const db = request.result;
-    const transaction = db.transaction("journal", "readonly");
-    const store = transaction.objectStore("journal");
-    const cursorReq = store.openCursor(null, "prev");
+  return new Promise((resolve, reject) => {
+    request.onsuccess = () => {
+      const db = request.result;
+      const transaction = db.transaction("journal", "readonly");
+      const store = transaction.objectStore("journal");
+      const cursorReq = store.openCursor(null, "prev");
 
-    cursorReq.onsuccess = (event) => {
-      const cursor = event.target.result;
-      if (cursor) {
-        if (maxLine !== 0) {
+      cursorReq.onsuccess = (event) => {
+        const cursor = event.target.result;
+        if (cursor) {
           journal.push(cursor.value);
-          cursor.continue();
+
           maxLine--;
-          console.log(journal); //make it order by year
+
+          if (maxLine !== 0) {
+            cursor.continue();
+          } else {
+            resolve(
+              journal.sort((a, b) => parseFloat(a.year) - parseFloat(b.year))
+            );
+          }
         }
-      }
+      };
     };
-  };
-
-  // for (let i = 1; i < maxLine; i++) {
-  //   const a = await readSaveByIndex("journal", "year", 9);
-  //   for (let j in a) {
-  //     console.log(a[j].log, i);
-  //   }
-  // }
-
-  // console.log(a);
+  });
 }
 
-function renderJournal() {} //push to frontend
+async function renderJournal() {
+  const journal = await loadJournal();
+  const sorted = Object.groupBy(journal, ({ year }) => year);
+  const keys = Object.keys(sorted);
+
+  keys.forEach((i) => {
+    console.log(i); //year
+    for (const j in sorted[i]) {
+      console.log(sorted[i][j].log);
+    }
+  });
+} //push to frontend
 
 export { loadJournal, renderJournal };

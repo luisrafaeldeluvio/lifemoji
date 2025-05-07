@@ -25,7 +25,7 @@ console.log(a);
 // const playerData = await readSave("player", "quiglr7bppvuk681");
 // console.log("Player data:", playerData);
 
-loadJournal();
+renderJournal();
 
 // const Journal = await readSaveByIndex("journal", "year", 1);
 // console.log(Journal[3]);
