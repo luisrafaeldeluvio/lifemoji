@@ -1,7 +1,7 @@
 import { writeSave } from "./saveManager.js";
 
-function simpleEvent(event) {
-  writeSave("journal", { year: 3, log: event });
+function simpleEvent(year, event) {
+  writeSave("journal", { year: year, log: event });
 }
 
 export { simpleEvent };

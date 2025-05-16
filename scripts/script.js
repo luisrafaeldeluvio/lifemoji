@@ -2,40 +2,47 @@ import { Npc } from "./npc.js";
 import { Player } from "./player.js";
 import { loadJournal, renderJournal } from "./renderJournal.js";
 import { simpleEvent } from "./events.js";
-import {
-  readSave,
-  readKey,
-  readSaveByIndex,
-  writeSave,
-} from "./saveManager.js";
+import { readSave, readKey, writeSave } from "./saveManager.js";
 
 function newPlayer() {
-  const playerA = new Player();
+  const playerA = new Player({ age: 24 });
   writeSave("player", playerA);
 }
 
-const b = await readKey("player");
-const a = await readSave("player", b);
-console.log(a);
+const key = await readKey("player");
+const data = await readSave("player", key);
 
-//const loadData = await readSave("player");
+let player = new Player({
+  id: data._id,
+  birthday: data._birthday,
+  age: data._age,
+  sex: data._sex,
+  stats: data._stats,
+  location: data._location,
+  firstname: data._firstname,
+  lastname: data._lastname,
+});
 
-// simpleEvent("Hello World2288!");
+console.log(player);
 
-// const playerData = await readSave("player", "quiglr7bppvuk681");
-// console.log("Player data:", playerData);
+document.getElementById("growup").addEventListener("click", async () => {
+  player.age++;
+  writeSave("player", player);
+  console.log(player);
+  simpleEvent(player.age, "Hello World2288!");
+  document.getElementsByClassName("main-journalContainer")[0].innerHTML =
+    await renderJournal();
+});
 
-renderJournal();
+document.getElementsByClassName("main-journalContainer")[0].innerHTML =
+  await renderJournal();
 
-// const Journal = await readSaveByIndex("journal", "year", 1);
-// console.log(Journal[3]);
+document.getElementById("playerInfo-fullname").innerHTML = player.fullName;
 
-// document.getElementById("playerInfo-fullname").innerHTML = playerA.fullName;
-
-// document.getElementById("playerInfo-joyStat").innerHTML += playerA.stats.joy;
-// document.getElementById("playerInfo-healthStat").innerHTML +=
-//   playerA.stats.health;
-// document.getElementById("playerInfo-smartsStat").innerHTML +=
-//   playerA.stats.smarts;
-// document.getElementById("playerInfo-looksStat").innerHTML +=
-//   playerA.stats.looks;
+document.getElementById("playerInfo-joyStat").innerHTML += player.stats._joy;
+document.getElementById("playerInfo-healthStat").innerHTML +=
+  player.stats._health;
+document.getElementById("playerInfo-smartsStat").innerHTML +=
+  player.stats._smarts;
+document.getElementById("playerInfo-looksStat").innerHTML +=
+  player.stats._looks;

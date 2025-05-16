@@ -5,13 +5,13 @@ import places from "../assets/places.json" with {type: 'json'};
 
 class Npc {
     constructor({
-        birthday, sex,
+        id, birthday, age, sex,
         stats, location,
         firstname, lastname
     } = {}) {
-        this._id = Npc.newId();
+        this._id = id ?? Npc.newId();
         this._birthday = birthday ?? Npc.newBirthday();
-        this._age = 0;
+        this._age = age ?? 0;
         this._sex = sex ?? Npc.newSex();
         this._stats = stats ?? new Stats();
         this._location = location ?? Npc.newLocation();

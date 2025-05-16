@@ -2,15 +2,17 @@ import { Npc } from "./npc.js";
 
 class Player extends Npc {
   constructor({
+    id,
     birthday,
+    age,
     sex,
     stats,
     location,
     firstname,
     lastname,
-    age,
   } = {}) {
     super({
+      id,
       birthday,
       sex,
       stats,

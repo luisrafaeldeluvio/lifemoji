@@ -1,25 +1,3 @@
-// function renderJournal() {
-//   let length = 0;
-//   const line = 18;
-//   const finalRender = [];
-//   const journalObject = Object.keys(journal);
-//   for (let i in journalObject) {
-//     if (length >= line) break;
-//     length++;
-//     const year = Number(journalObject.length - i).toString();
-
-//     for (let j in journal[year]) {
-//       if (length >= line) break;
-//       length++;
-//       finalRender.push(journal[year][j]);
-//     }
-//     finalRender.push(`Year ${year}`);
-//   }
-//   return finalRender.reverse();
-// }
-
-import { readSaveByIndex } from "./saveManager.js";
-
 function loadJournal() {
   let maxLine = 18;
   const journal = [];
@@ -35,18 +13,14 @@ function loadJournal() {
 
       cursorReq.onsuccess = (event) => {
         const cursor = event.target.result;
-        if (cursor) {
+        if (cursor && maxLine > 0) {
           journal.push(cursor.value);
-
           maxLine--;
-
-          if (maxLine !== 0) {
-            cursor.continue();
-          } else {
-            resolve(
-              journal.sort((a, b) => parseFloat(a.year) - parseFloat(b.year))
-            );
-          }
+          cursor.continue();
+        } else {
+          resolve(
+            journal.sort((a, b) => parseFloat(a.year) - parseFloat(b.year))
+          );
         }
       };
     };
@@ -57,13 +31,19 @@ async function renderJournal() {
   const journal = await loadJournal();
   const sorted = Object.groupBy(journal, ({ year }) => year);
   const keys = Object.keys(sorted);
+  const render = [];
 
   keys.forEach((i) => {
-    console.log(i); //year
+    render.push(`Year ${i} \n`);
     for (const j in sorted[i]) {
-      console.log(sorted[i][j].log);
+      render.push(`${sorted[i][j].log} \n`);
     }
   });
+
+  if (render.length > 18) {
+    render.splice(0, render.length - 18);
+  }
+  return render.join("");
 } //push to frontend
 
 export { loadJournal, renderJournal };
