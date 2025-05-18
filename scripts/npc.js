@@ -5,7 +5,7 @@ import places from "../assets/places.json" with {type: 'json'};
 class Npc {
     constructor({
         id, birthday, age, sex, location,
-        firstname, lastname
+        firstname, lastname, relations
     } = {}) {
         this._id = id ?? Npc.newId();
         this._birthday = birthday ?? Npc.newBirthday();
@@ -14,6 +14,7 @@ class Npc {
         this._location = location ?? Npc.newLocation();
         this._firstname = firstname ?? Npc.newFirstName(this._location, this._sex);
         this._lastname = lastname ?? Npc.newLastName(this._location, this._sex);
+        this._relations = relations;
     }
 
     static randomInt(min, max) {
@@ -70,10 +71,6 @@ class Npc {
         return this._sex;
     }
 
-    get stats() {
-        return this._stats;
-    }
-
     get location() {
         return this._location;
     }
@@ -102,10 +99,6 @@ class Npc {
         this._sex = value;
     }
 
-    set stats(value) {
-        this._stats = value;
-    }
-
     set location(value) {
         this._location = value;
     }
@@ -117,6 +110,9 @@ class Npc {
     set lastName(value) {
         this._lastname = value;
     }
+
+    //npcs stats of their own
+    //interaction methods
 }
 
 export { Npc };

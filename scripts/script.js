@@ -6,8 +6,16 @@ import { readSave, readKey, writeSave } from "./saveManager.js";
 
 function newPlayer() {
   const playerA = new Player({ age: 24 });
+  const npc = new Npc({ relations: "parents" });
+  const npc2 = new Npc({ relations: "parents" });
+  playerA.npcIds = npc.id;
+  playerA.npcIds = npc2.id;
   writeSave("player", playerA);
+  writeSave("npc", npc);
+  writeSave("npc", npc2);
 }
+
+// newPlayer();
 
 const key = await readKey("player");
 const data = await readSave("player", key);
@@ -21,6 +29,7 @@ let player = new Player({
   location: data._location,
   firstname: data._firstname,
   lastname: data._lastname,
+  npcIds: data._npcIds,
 });
 
 console.log(player);
@@ -50,3 +59,6 @@ document.getElementById("playerInfo-smartsStat").innerHTML +=
   player.stats._smarts;
 document.getElementById("playerInfo-looksStat").innerHTML +=
   player.stats._looks;
+
+const npc = new Npc();
+console.log(npc);

@@ -22,6 +22,20 @@ class Player extends Npc {
       age,
     });
     this._stats = stats ?? new Stats();
+    this._npcIds = [];
+  }
+
+  get stats() {
+    return this._stats;
+  }
+  get npcIds() {
+    return this._npcIds;
+  }
+  set stats(value) {
+    this._stats = value;
+  }
+  set npcIds(value) {
+    this._npcIds.push(value);
   }
 }
 

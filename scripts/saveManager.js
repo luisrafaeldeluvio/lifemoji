@@ -3,6 +3,7 @@ function initSave() {
   request.onupgradeneeded = () => {
     const db = request.result;
     const playerStore = db.createObjectStore("player", { keyPath: "_id" });
+    const npcStore = db.createObjectStore("npc", { keyPath: "_id" });
     const journalStore = db.createObjectStore("journal", {
       autoIncrement: true,
     });
@@ -10,6 +11,8 @@ function initSave() {
     journalStore.createIndex("year", "year", {
       unique: false,
     });
+
+    npcStore.createIndex("relations", "_relations");
   };
   // request.onsuccess = () => {
   //   const db = request.result;
