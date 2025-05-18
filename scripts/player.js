@@ -1,4 +1,5 @@
 import { Npc } from "./npc.js";
+import { Stats } from "./stats.js";
 
 class Player extends Npc {
   constructor({
@@ -15,12 +16,12 @@ class Player extends Npc {
       id,
       birthday,
       sex,
-      stats,
       location,
       firstname,
       lastname,
       age,
     });
+    this._stats = stats ?? new Stats();
   }
 }
 
