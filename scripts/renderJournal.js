@@ -36,7 +36,7 @@ async function renderJournal() {
   keys.forEach((i) => {
     render.push(`Year ${i} \n`);
     for (const j in sorted[i]) {
-      render.push(`${sorted[i][j].log} \n`);
+      render.push(`    ${sorted[i][j].log} \n`);
     }
   });
 

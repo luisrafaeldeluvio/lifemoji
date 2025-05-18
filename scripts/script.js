@@ -37,6 +37,10 @@ document.getElementById("growup").addEventListener("click", async () => {
 document.getElementsByClassName("main-journalContainer")[0].innerHTML =
   await renderJournal();
 
+document.getElementsByClassName("profileInfo")[0].innerHTML = `${
+  player.firstName
+}, ${player.sex === "male" ? "M" : "F"}${player.age}`;
+
 document.getElementById("playerInfo-fullname").innerHTML = player.fullName;
 
 document.getElementById("playerInfo-joyStat").innerHTML += player.stats._joy;

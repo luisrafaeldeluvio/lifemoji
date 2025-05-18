@@ -46,23 +46,14 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  height: 100px;
+  height: 82px;
   width: 100px;
-  padding: 7px;
-  padding-bottom: 21px;
+  padding: 5px;
 }
 
-.playerInfo-info {
-  background: yellow;
-  transform: rotate(-2deg);
-  padding: 10px;
-}
-
-.playerInfo-stats {
-  background: limegreen;
-  transform: rotate(1deg);
-  padding: 10px;
-  font-size: 0.8em;
+.playerInfo-profile .profileInfo {
+  padding: 5px;
+  text-align: center;
 }
 
 .playerInfo-profile::before {
@@ -76,6 +67,19 @@ body {
   bottom: 85%;
   left: 45%;
   position: absolute;
+}
+
+.playerInfo-info {
+  background: yellow;
+  transform: rotate(-2deg);
+  padding: 10px;
+}
+
+.playerInfo-stats {
+  background: limegreen;
+  transform: rotate(1deg);
+  padding: 10px;
+  font-size: 0.8em;
 }
 
 .playerInfo-btn {
@@ -114,28 +118,30 @@ body {
   border-top: none;
 }
 
-/* .main-journalContainer {
-    height: inherit;
-    background: white
+.main-journalContainer {
+  height: inherit;
+  background: white
     repeating-linear-gradient(
-        black, black 1px, 
-        transparent 1px, transparent 25px 
-      );
-    background-size: 25px 25px;
-} */
-
-.main-journalContainer > span {
-  display: block;
-  padding-top: 0.25lh;
-  padding-bottom: 0.25lh;
+      black,
+      black 1px,
+      transparent 1px,
+      transparent 1lh
+    );
+  /* background-size: 25px 25px; */
 }
 
-.main-journalContainer > span::after {
+.main-journalContainer {
+  white-space: pre;
+
+  font-size: 1lh;
+}
+
+/* .main-journalContainer *::after {
   content: " ";
   height: 0.75px;
   background-image: linear-gradient(black);
   display: block;
-}
+} */
 
 .main-nav {
   height: 70%;
@@ -149,7 +155,7 @@ body {
   list-style-type: none;
 }
 
-.main li {
+.main-nav li {
   background: red;
   padding: 2.5px;
   font-size: 0.9em;
@@ -159,7 +165,43 @@ body {
   height: 1.5em;
 }
 
-.main li.-currentNav {
+.main-nav li:nth-child(1) {
+  background: brown;
+}
+
+.main-nav li:nth-child(2) {
+  background: yellow;
+}
+
+.main-nav li:nth-child(3) {
+  background: purple;
+}
+
+.main-nav li:nth-child(4) {
+  background: blue;
+}
+
+.main-nav li:nth-child(5) {
+  background: gray;
+}
+
+.main-nav li:nth-child(6) {
+  background: red;
+}
+
+.main-nav li:nth-child(7) {
+  background: green;
+}
+
+.main-nav li:nth-child(8) {
+  background: orange;
+}
+
+.main-nav li:nth-child(9) {
+  background: white;
+}
+
+.main-nav li.-currentNav {
   /* make it so that all the tabs above the current tab also dissapear */
   background: transparent;
   box-shadow: none;
