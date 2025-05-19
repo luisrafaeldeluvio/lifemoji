@@ -63,5 +63,6 @@ document.getElementById("playerInfo-looksStat").innerHTML +=
   player.stats._looks;
 
 const npc = new Npc({ relations: "parent" });
+
 console.log(npc);
 console.log(new Stats({ relations: "parent" }));
