@@ -1,11 +1,12 @@
 import { firstName, lastName } from 'full-name-generator';
+import { Stats } from "./stats.js";
 
 import places from "../assets/places.json" with {type: 'json'};
 
 class Npc {
     constructor({
         id, birthday, age, sex, location,
-        firstname, lastname, relations
+        firstname, lastname, relations, stats
     } = {}) {
         this._id = id ?? Npc.newId();
         this._birthday = birthday ?? Npc.newBirthday();
@@ -15,6 +16,7 @@ class Npc {
         this._firstname = firstname ?? Npc.newFirstName(this._location, this._sex);
         this._lastname = lastname ?? Npc.newLastName(this._location, this._sex);
         this._relations = relations;
+        this._stats = stats ?? new Stats({relations});
     }
 
     static randomInt(min, max) {
@@ -87,6 +89,10 @@ class Npc {
         return `${this._firstname} ${this._lastname}`;
     }
 
+    get stats() {
+    return this._stats;
+  }
+
     set birthday(value) {
         this._birthday = value;
     }
@@ -111,8 +117,9 @@ class Npc {
         this._lastname = value;
     }
 
-    //npcs stats of their own
-    //interaction methods
+    set stats(value) {
+    this._stats = Math.max(0, Math.min(value, 100));;
+  }
 }
 
 export { Npc };

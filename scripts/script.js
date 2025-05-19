@@ -3,6 +3,7 @@ import { Player } from "./player.js";
 import { loadJournal, renderJournal } from "./renderJournal.js";
 import { simpleEvent } from "./events.js";
 import { readSave, readKey, writeSave } from "./saveManager.js";
+import { Stats } from "./stats.js";
 
 function newPlayer() {
   const playerA = new Player({ age: 24 });
@@ -36,6 +37,7 @@ console.log(player);
 
 document.getElementById("growup").addEventListener("click", async () => {
   player.age++;
+  player.stats._joy++;
   writeSave("player", player);
   console.log(player);
   simpleEvent(player.age, "Hello World2288!");
@@ -60,5 +62,6 @@ document.getElementById("playerInfo-smartsStat").innerHTML +=
 document.getElementById("playerInfo-looksStat").innerHTML +=
   player.stats._looks;
 
-const npc = new Npc();
+const npc = new Npc({ relations: "parent" });
 console.log(npc);
+console.log(new Stats({ relations: "parent" }));
