@@ -10,6 +10,7 @@ class Player extends Npc {
     firstname,
     lastname,
     stats,
+    relations,
   } = {}) {
     super({
       id,
@@ -20,6 +21,7 @@ class Player extends Npc {
       firstname,
       lastname,
       age,
+      relations,
     });
     this._npcIds = [];
   }

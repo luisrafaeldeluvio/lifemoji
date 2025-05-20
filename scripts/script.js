@@ -6,7 +6,7 @@ import { readSave, readKey, writeSave } from "./saveManager.js";
 import { Stats } from "./stats.js";
 
 function newPlayer() {
-  const playerA = new Player({ age: 24 });
+  const playerA = new Player({ age: 24, relations: "player" });
   const npc = new Npc({ relations: "parents" });
   const npc2 = new Npc({ relations: "parents" });
   playerA.npcIds = npc.id;
@@ -65,4 +65,3 @@ document.getElementById("playerInfo-looksStat").innerHTML +=
 const npc = new Npc({ relations: "parent" });
 
 console.log(npc);
-console.log(new Stats({ relations: "parent" }));
