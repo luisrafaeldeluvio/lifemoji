@@ -40,7 +40,7 @@ document.getElementById("growup").addEventListener("click", async () => {
   player.stats._joy++;
   writeSave("player", player);
   console.log(player);
-  simpleEvent(player.age, "Hello World2288!");
+  simpleEvent("Hello World2288!");
   document.getElementsByClassName("main-journalContainer")[0].innerHTML =
     await renderJournal();
 });
@@ -63,5 +63,6 @@ document.getElementById("playerInfo-looksStat").innerHTML +=
   player.stats._looks;
 
 const npc = new Npc({ relations: "parent" });
+npc.conversation("klklbnhl19ww6tzu");
 
 console.log(npc);

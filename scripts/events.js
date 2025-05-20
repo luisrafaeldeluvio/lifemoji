@@ -1,7 +1,9 @@
-import { writeSave } from "./saveManager.js";
+import { readSave, readKey, writeSave } from "./saveManager.js";
 
-function simpleEvent(year, event) {
-  writeSave("journal", { year: year, log: event });
+async function simpleEvent(event) {
+  const key = await readKey("player");
+  const data = await readSave("player", key);
+  writeSave("journal", { year: data._age, log: event });
 }
 
 export { simpleEvent };

@@ -1,7 +1,11 @@
 import { firstName, lastName } from 'full-name-generator';
 import { Stats } from "./stats.js";
+import { simpleEvent } from "./events.js";
 
 import places from "../assets/places.json" with {type: 'json'};
+
+import { readSaveByIndex, readSave } from "./saveManager.js";
+
 
 class Npc {
     constructor({
@@ -55,6 +59,11 @@ class Npc {
             const loc = Object.keys(places);
             return loc[Npc.#randomInt(0, loc.length)];
         // }
+    }
+
+    async conversation(npcId) {
+        const npcData = await readSave('npc', npcId)
+        simpleEvent(`You talked with ${npcData._firstname}`);
     }
 
     get id() {
