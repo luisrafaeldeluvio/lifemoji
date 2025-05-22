@@ -3,7 +3,8 @@ import { Player } from "./player.js";
 import { loadJournal, renderJournal } from "./renderJournal.js";
 import { simpleEvent } from "./events.js";
 import { readSave, readKey, writeSave } from "./saveManager.js";
-import { Stats } from "./stats.js";
+
+console.log(true);
 
 function newPlayer() {
   const playerA = new Player({ age: 24, relations: "player" });
@@ -63,6 +64,7 @@ document.getElementById("playerInfo-looksStat").innerHTML +=
   player.stats._looks;
 
 const npc = new Npc({ relations: "parent" });
-npc.conversation("klklbnhl19ww6tzu");
+npc.conversation("klklbnhl19ww6tzu"); //////
+npc.askForMoney("klklbnhl19ww6tzu");
 
 console.log(npc);

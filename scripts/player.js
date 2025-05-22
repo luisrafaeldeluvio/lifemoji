@@ -1,6 +1,6 @@
-import { Npc } from "./npc.js";
+import { Skeleton } from "./skeleton.js";
 
-class Player extends Npc {
+class Player extends Skeleton {
   constructor({
     id,
     birthday,
@@ -9,8 +9,8 @@ class Player extends Npc {
     location,
     firstname,
     lastname,
-    stats,
     relations,
+    stats,
   } = {}) {
     super({
       id,

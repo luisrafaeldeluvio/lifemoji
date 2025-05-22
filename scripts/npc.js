@@ -1,133 +1,55 @@
-import { firstName, lastName } from 'full-name-generator';
-import { Stats } from "./stats.js";
 import { simpleEvent } from "./events.js";
-
-import places from "../assets/places.json" with {type: 'json'};
-
-import { readSaveByIndex, readSave } from "./saveManager.js";
-
-
-class Npc {
-    constructor({
-        id, birthday, age, sex, location,
-        firstname, lastname, relations, stats
-    } = {}) {
-        this._id = id ?? Npc.#newId();
-        this._birthday = birthday ?? Npc.#newBirthday();
-        this._age = age ?? 0;
-        this._sex = sex ?? Npc.#newSex();
-        this._location = location ?? Npc.#newLocation();
-        this._firstname = firstname ?? Npc.#newFirstName(this._location, this._sex);
-        this._lastname = lastname ?? Npc.#newLastName(this._location, this._sex);
-        this._relations = relations;
-        this._stats = stats ?? new Stats({relations});
-    }
-
-    static #randomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    static #newFirstName(location, sex) {
-        return firstName(places[location]['iso'], (sex === 'male') ? 0 : 1, 1)
-    }
-
-    static #newLastName(location, sex) {
-        return lastName(places[location]['iso'], (sex === 'male') ? 0 : 1, 1)
-    }
-
-    static #newId() {
-        const x = '1234567890abcdefghijklmnopqrstuvwxyz';
-        let id = '';
-        while (id.length < 16) {
-            id += x.charAt(Npc.#randomInt(0, x.length));
-        }
-        return id;
-    }
-
-    static #newBirthday() {
-        return `${Npc.#randomInt(1,12)}/${Npc.#randomInt(1,28)}`
-    }
-
-    static #newSex()  {
-        return (Npc.#randomInt(0, 1) === 0) ? "male" : "female";
-    }
-
-    static #newLocation() {
-        // if (Npc.#randomInt(1, 100) < 90 && player._location !== undefined) {
-        //     return player._location;
-        // } else {
-            const loc = Object.keys(places);
-            return loc[Npc.#randomInt(0, loc.length)];
-        // }
-    }
-
-    async conversation(npcId) {
-        const npcData = await readSave('npc', npcId)
-        simpleEvent(`You talked with ${npcData._firstname}`);
-    }
-
-    get id() {
-        return this._id
-    }
-
-    get birthday() {
-        return this._birthday;
-    }
-
-    get age() {
-        return this._age;
-    }
-
-    get sex() {
-        return this._sex;
-    }
-
-    get location() {
-        return this._location;
-    }
-
-    get firstName() {
-        return this._firstname;
-    }
-
-    get lastName() {
-        return this._lastname;
-    }
-
-    get fullName() {
-        return `${this._firstname} ${this._lastname}`;
-    }
-
-    get stats() {
-    return this._stats;
+import { loadPlayer } from "./playerData.js";
+import { readSave, writeSave } from "./saveManager.js";
+import { Skeleton } from "./skeleton.js";
+class Npc extends Skeleton {
+  constructor({
+    id,
+    birthday,
+    age,
+    sex,
+    location,
+    firstname,
+    lastname,
+    relations,
+    stats,
+  } = {}) {
+    super({
+      id,
+      birthday,
+      sex,
+      stats,
+      location,
+      firstname,
+      lastname,
+      age,
+      relations,
+    });
   }
 
-    set birthday(value) {
-        this._birthday = value;
-    }
+  async conversation(npcId) {
+    const npcData = await readSave("npc", npcId);
+    simpleEvent(`You talked with ${npcData._firstname}`);
+  }
 
-    set age(value) {
-        this._age = value;
-    }
+  async spendTime(npcId) {
+    const npcData = await readSave("npc", npcId);
+    simpleEvent(`You spent time with ${npcData._firstname}`);
+  }
 
-    set sex(value) {
-        this._sex = value;
-    }
+  async askForMoney(npcId) {
+    const npcData = await readSave("npc", npcId);
 
-    set location(value) {
-        this._location = value;
-    }
+    let player = loadPlayer();
 
-    set firstName(value) {
-        this._firstname = value;
-    }
+    console.log(player);
 
-    set lastName(value) {
-        this._lastname = value;
-    }
+    // if (!(npcData._stats._generosity > Npc.#randomInt(0, 100))) return;
 
-    set stats(value) {
-    this._stats = Math.max(0, Math.min(value, 100));;
+    // player.stats._smarts += 100;
+    // writeSave('player', player);
+
+    simpleEvent(`i asked ${npcData._firstname} for money`);
   }
 }
 
