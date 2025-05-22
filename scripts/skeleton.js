@@ -3,19 +3,20 @@ import { firstName, lastName } from 'full-name-generator';
 import { Stats } from "./stats.js";
 
 class Skeleton {
+
     constructor({
         id, birthday, age, sex, location,
         firstname, lastname, relations, stats
     } = {}) {
-        this.id = id ?? Npc.#newId();
-        this.birthday = birthday ?? Npc.#newBirthday();
-        this.age = age ?? 0;
-        this.sex = sex ?? Npc.#newSex();
-        this.location = location ?? Npc.#newLocation();
-        this.firstname = firstname ?? Npc.#newFirstName(this.location, this.sex);
-        this.lastname = lastname ?? Npc.#newLastName(this.location, this.sex);
-        this.relations = relations;
-        this.stats = stats ?? new Stats({relations});
+        this._id = id ?? Skeleton.#newId();
+        this._birthday = birthday ?? Skeleton.#newBirthday();
+        this._age = age ?? 0;
+        this._sex = sex ?? Skeleton.#newSex();
+        this._location = location ?? Skeleton.#newLocation();
+        this._firstname = firstname ?? Skeleton.#newFirstName(this._location, this._sex);
+        this._lastname = lastname ?? Skeleton.#newLastName(this._location, this._sex);
+        this._relations = relations;
+        this._stats = stats ?? new Stats({relations});
     }
 
     static #randomInt(min, max) {
@@ -34,91 +35,103 @@ class Skeleton {
         const x = '1234567890abcdefghijklmnopqrstuvwxyz';
         let id = '';
         while (id.length < 16) {
-            id += x.charAt(Npc.#randomInt(0, x.length));
+            id += x.charAt(Skeleton.#randomInt(0, x.length));
         }
         return id;
     }
 
     static #newBirthday() {
-        return `${Npc.#randomInt(1,12)}/${Npc.#randomInt(1,28)}`
+        return `${Skeleton.#randomInt(1,12)}/${Skeleton.#randomInt(1,28)}`
     }
 
     static #newSex()  {
-        return (Npc.#randomInt(0, 1) === 0) ? "male" : "female";
+        return (Skeleton.#randomInt(0, 1) === 0) ? "male" : "female";
     }
 
     static #newLocation() {
-        // if (Npc.#randomInt(1, 100) < 90 && player.location !== undefined) {
+        // if (Skeleton._randomInt(1, 100) < 90 && player.location !== undefined) {
         //     return player.location;
         // } else {
             const loc = Object.keys(places);
-            return loc[Npc.#randomInt(0, loc.length)];
+            return loc[Skeleton.#randomInt(0, loc.length)];
         // }
     }
 
     get id() {
-        return this.id
+        return this._id
     }
 
     get birthday() {
-        return this.birthday;
+        return this._birthday;
     }
 
     get age() {
-        return this.age;
+        return this._age;
     }
 
     get sex() {
-        return this.sex;
+        return this._sex;
     }
 
     get location() {
-        return this.location;
+        return this._location;
     }
 
     get firstName() {
-        return this.firstname;
+        return this._firstname;
     }
 
     get lastName() {
-        return this.lastname;
+        return this._lastname;
     }
 
     get fullName() {
-        return `${this.firstname} ${this.lastname}`;
+        return `${this._firstname} ${this._lastname}`;
     }
 
     get stats() {
-    return this.stats;
-  }
+        return this._stats;
+    }
+
+    get relations() {
+        return this._relations;
+    }
+
+    set id(value) {
+        this._id = value;
+    }
 
     set birthday(value) {
-        this.birthday = value;
+        this._birthday = value;
     }
 
     set age(value) {
-        this.age = value;
+        this._age = value;
     }
 
     set sex(value) {
-        this.sex = value;
+        this._sex = value;
     }
 
     set location(value) {
-        this.location = value;
+        this._location = value;
     }
 
     set firstName(value) {
-        this.firstname = value;
+        this._firstname = value;
     }
 
     set lastName(value) {
-        this.lastname = value;
+        this._lastname = value;
     }
 
     set stats(value) {
-    this.stats = Math.max(0, Math.min(value, 100));;
-  }
+        this._stats = Math.max(0, Math.min(value, 100));;
+    }
+
+    set relations(value) {
+        this._relations = value;
+    }
 }
 
 export { Skeleton };

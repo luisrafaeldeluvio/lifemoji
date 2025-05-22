@@ -1,4 +1,5 @@
-const { Player } = await import("./player.js");
+import { Player } from "./player.js";
+import { readKey, readSave } from "./saveManager.js";
 
 async function loadPlayer() {
   const key = await readKey("player");
