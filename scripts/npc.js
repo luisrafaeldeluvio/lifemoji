@@ -40,16 +40,16 @@ class Npc extends Skeleton {
   async askForMoney(npcId) {
     const npcData = await readSave("npc", npcId);
 
-    let player = loadPlayer();
+    let player = await loadPlayer();
 
-    console.log(player);
+    // if (!(npcData._stats._generosity < Npc.randomInt(0, 100))) return;
 
-    // if (!(npcData._stats._generosity > Npc.#randomInt(0, 100))) return;
+    console.log(player.money, npcData._stats._generosity);
 
-    // player.stats._smarts += 100;
-    // writeSave('player', player);
+    player.money += 100;
+    writeSave("player", player);
 
-    simpleEvent(`i asked ${npcData._firstname} for money`);
+    simpleEvent(`i asked ${npcData._firstname} for money. i got 100`);
   }
 }
 

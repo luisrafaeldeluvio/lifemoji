@@ -14,6 +14,7 @@ async function loadPlayer() {
     firstname: data._firstname,
     lastname: data._lastname,
     npcIds: data._npcIds,
+    money: data._money,
   });
 }
 

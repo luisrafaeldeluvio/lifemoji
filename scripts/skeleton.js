@@ -19,7 +19,7 @@ class Skeleton {
         this._stats = stats ?? new Stats({relations});
     }
 
-    static #randomInt(min, max) {
+    static randomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
@@ -35,17 +35,17 @@ class Skeleton {
         const x = '1234567890abcdefghijklmnopqrstuvwxyz';
         let id = '';
         while (id.length < 16) {
-            id += x.charAt(Skeleton.#randomInt(0, x.length));
+            id += x.charAt(Skeleton.randomInt(0, x.length));
         }
         return id;
     }
 
     static #newBirthday() {
-        return `${Skeleton.#randomInt(1,12)}/${Skeleton.#randomInt(1,28)}`
+        return `${Skeleton.randomInt(1,12)}/${Skeleton.randomInt(1,28)}`
     }
 
     static #newSex()  {
-        return (Skeleton.#randomInt(0, 1) === 0) ? "male" : "female";
+        return (Skeleton.randomInt(0, 1) === 0) ? "male" : "female";
     }
 
     static #newLocation() {
@@ -53,7 +53,7 @@ class Skeleton {
         //     return player.location;
         // } else {
             const loc = Object.keys(places);
-            return loc[Skeleton.#randomInt(0, loc.length)];
+            return loc[Skeleton.randomInt(0, loc.length)];
         // }
     }
 

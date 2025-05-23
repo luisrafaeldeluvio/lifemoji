@@ -36,6 +36,6 @@ document.getElementById("growup").addEventListener("click", async () => {
 
 const npc = new Npc({ relations: "parent" });
 // npc.conversation("klklbnhl19ww6tzu"); //////
-// npc.askForMoney("klklbnhl19ww6tzu");
+npc.askForMoney("n64bwp8t18ip2i1g");
 
 console.log(npc);
