@@ -28,30 +28,44 @@ class Npc extends Skeleton {
     });
   }
 
-  async conversation(npcId) {
-    const npcData = await readSave("npc", npcId);
-    simpleEvent(`You talked with ${npcData._firstname}`);
+  #saveNpcData() {
+    writeSave(
+      "npc",
+      {
+        _id: this._id,
+        _birthday: this._birthday,
+        _sex: this._sex,
+        _stats: this._stats,
+        _location: this._location,
+        _firstname: this._firstname,
+        _lastname: this._lastname,
+        _age: this._age,
+        _relations: this._relations,
+      },
+      this._key
+    );
   }
 
-  async spendTime(npcId) {
-    const npcData = await readSave("npc", npcId);
-    simpleEvent(`You spent time with ${npcData._firstname}`);
+  async conversation() {
+    this._stats._relationship += 10;
+    this.#saveNpcData();
+    simpleEvent(`You talked with ${this._firstname}`);
+  }
+
+  async spendTime() {
+    simpleEvent(`You spent time with ${this._firstname}`);
   }
 
   async askForMoney() {
-    if (!(this._stats._generosity < Npc.randomInt(0, 100))) {
+    if (this._stats._generosity > Npc.randomInt(0, 100)) {
       simpleEvent(`${this._firstname} refused to give me money.`);
-      console.log(`${this._firstname} refused to give me money.`);
-
       return;
     }
 
     let player = await loadPlayer();
-
     player.money += 100;
-    writeSave("player", player);
-    console.log(`i asked ${this._firstname} for money. i got 100`);
 
+    writeSave("player", player);
     simpleEvent(`i asked ${this._firstname} for money. i got 100`);
   }
 }

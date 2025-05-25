@@ -35,7 +35,7 @@ document.getElementById("growup").addEventListener("click", async () => {
     await renderJournal();
 });
 
-const npc = await loadNpc("wvyg08s0ksfiw707");
-npc.askForMoney();
+const npc = await loadNpc("i0qlr0fgfsnjxg0a");
 
 console.log(npc);
+npc.conversation();
