@@ -1,4 +1,4 @@
-import { Player } from "../player.js";
+import { Player } from "../model/player.js";
 import { readKey, readSave } from "./saveManager.js";
 
 async function loadPlayer() {

@@ -2,6 +2,7 @@ import { simpleEvent } from "../events.js";
 import { loadPlayer } from "../data/playerData.js";
 import { readSave, writeSave } from "../data/saveManager.js";
 import { Skeleton } from "./skeleton.js";
+
 class Npc extends Skeleton {
   constructor({
     id,
