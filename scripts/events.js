@@ -1,4 +1,4 @@
-import { readSave, readKey, writeSave } from "./saveManager.js";
+import { readSave, readKey, writeSave } from "./data/saveManager.js";
 
 async function simpleEvent(event) {
   const key = await readKey("player");

@@ -1,6 +1,6 @@
-import places from "../assets/places.json" with {type: 'json'};
+import places from "../../assets/places.json" with {type: 'json'};
 import { firstName, lastName } from 'full-name-generator';
-import { Stats } from "./stats.js";
+import { Stats } from "../stats.js";
 
 class Skeleton {
 
