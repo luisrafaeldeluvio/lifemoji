@@ -5,6 +5,7 @@ import { simpleEvent } from "./events.js";
 import { readSave, readKey, writeSave } from "./data/saveManager.js";
 import { loadPlayer } from "./data/playerData.js";
 import { loadNpc } from "./data/npcData.js";
+import { Dialog } from "./createDialog.js";
 
 function newPlayer() {
   const playerA = new Player({ age: 24, relations: "player" });
@@ -35,7 +36,44 @@ document.getElementById("growup").addEventListener("click", async () => {
     await renderJournal();
 });
 
-const npc = await loadNpc("i0qlr0fgfsnjxg0a");
+const npc = await loadNpc("eu6o7m1116mj6np5");
 
 console.log(npc);
 npc.conversation();
+
+const a = new Dialog({
+  text: "text flavor or something",
+  title: "you",
+  stats: ["smarts", "health"],
+  buttons: {
+    button1: {
+      text: "hello",
+      action: () => {
+        console.log("this is a functioin from the button");
+      },
+    },
+    button2: {
+      text: "hello2",
+      action: () => {
+        console.log("this is a functioin from the button2");
+      },
+    },
+    button3: {
+      text: "hello3",
+      action: () => {
+        console.log("this is a functioin from the button3");
+      },
+    },
+    button4: {
+      text: "hello4",
+      action: () => {
+        console.log("this is a functioin from the button4");
+      },
+    },
+  },
+});
+
+a.onAction("button1");
+
+// TODO:
+// a function or method for managing multiple dialogs
