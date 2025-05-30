@@ -1,0 +1,120 @@
+.main {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+  margin: 0.5em;
+  margin-top: 0;
+  margin-left: 0;
+  height: calc(100% - 1em - 80.8px);
+}
+
+.main-container {
+  flex-grow: 1;
+  background: blue;
+  padding: 10px 10px 10px 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  height: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main-journal {
+  height: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 20px;
+  background: white;
+  border: 3px rgb(230, 230, 230) solid;
+  border-left: none;
+  border-top: none;
+}
+
+.main-journalContainer {
+  height: inherit;
+  background: white
+    repeating-linear-gradient(
+      black,
+      black 1px,
+      transparent 1px,
+      transparent 1lh
+    );
+  /* background-size: 25px 25px; */
+}
+
+.main-journalContainer {
+  white-space: pre;
+
+  font-size: 1lh;
+}
+
+/* .main-journalContainer *::after {
+  content: " ";
+  height: 0.75px;
+  background-image: linear-gradient(black);
+  display: block;
+} */
+
+.main-nav {
+  height: 70%;
+}
+
+.main-nav ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  list-style-type: none;
+}
+
+.main-nav li {
+  background: red;
+  padding: 2.5px;
+  font-size: 0.9em;
+  right: 20%;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 1.5em;
+}
+
+.main-nav li:nth-child(1) {
+  background: brown;
+}
+
+.main-nav li:nth-child(2) {
+  background: yellow;
+}
+
+.main-nav li:nth-child(3) {
+  background: purple;
+}
+
+.main-nav li:nth-child(4) {
+  background: blue;
+}
+
+.main-nav li:nth-child(5) {
+  background: gray;
+}
+
+.main-nav li:nth-child(6) {
+  background: red;
+}
+
+.main-nav li:nth-child(7) {
+  background: green;
+}
+
+.main-nav li:nth-child(8) {
+  background: orange;
+}
+
+.main-nav li:nth-child(9) {
+  background: white;
+}
+
+.main-nav li.-currentNav {
+  /* make it so that all the tabs above the current tab also dissapear */
+  background: transparent;
+  box-shadow: none;
+  font-size: 0;
+}
