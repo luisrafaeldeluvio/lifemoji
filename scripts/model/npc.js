@@ -2,6 +2,7 @@ import { simpleEvent } from "../events.js";
 import { loadPlayer } from "../data/playerData.js";
 import { readSave, writeSave } from "../data/saveManager.js";
 import { Skeleton } from "./skeleton.js";
+import { Dialog } from "../createDialog.js";
 
 class Npc extends Skeleton {
   constructor({
@@ -54,6 +55,9 @@ class Npc extends Skeleton {
 
   async spendTime() {
     simpleEvent(`You spent time with ${this._firstname}`);
+    new Dialog({
+      text: `I spent time with ${this.firstName}`,
+    });
   }
 
   async askForMoney() {

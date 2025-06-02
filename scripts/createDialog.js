@@ -1,29 +1,7 @@
 import { loadPlayer } from "./data/playerData";
 
 class Dialog {
-  constructor({
-    title,
-    text,
-    stats = [],
-    buttons = {
-      button1: {
-        text,
-        action: new Function(),
-      },
-      button2: {
-        text,
-        action: new Function(),
-      },
-      button3: {
-        text,
-        action: new Function(),
-      },
-      button4: {
-        text,
-        action: new Function(),
-      },
-    },
-  } = {}) {
+  constructor({ title, text, stats = [], buttons = {} } = {}) {
     this.title = title;
     this.text = text;
     this.stats = stats;
@@ -33,6 +11,7 @@ class Dialog {
 
   async createDialog() {
     const dialog = document.createElement("dialog");
+    dialog.setAttribute("closedby", "closerequest");
     dialog.className = "dialog";
 
     if (this.title) {
@@ -65,6 +44,8 @@ class Dialog {
     }
 
     if (Object.keys(this.buttons).length > 0) {
+      console.log(Object.keys(this.buttons).length);
+
       const element = document.createElement("div");
       element.className = "dialog-buttonsContainer";
 
@@ -82,6 +63,26 @@ class Dialog {
     document.body.insertBefore(dialog, location);
     document.getElementsByClassName("dialog")[0].showModal();
   }
+
+  // [ Button Example ]
+  // buttons = {
+  //     button1: {
+  //       text,
+  //       action: new Function(),
+  //     },
+  //     button2: {
+  //       text,
+  //       action: new Function(),
+  //     },
+  //     button3: {
+  //       text,
+  //       action: new Function(),
+  //     },
+  //     button4: {
+  //       text,
+  //       action: new Function(),
+  //     },
+  // },
 
   onAction(buttonNum) {
     this.buttons[buttonNum].action();
