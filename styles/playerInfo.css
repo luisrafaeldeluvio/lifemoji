@@ -9,6 +9,7 @@
   width: 100px;
   height: 100px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 2px solid black;
 }
 
 .playerInfo-profile {
@@ -21,9 +22,10 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  height: 82px;
-  width: 100px;
-  padding: 5px;
+  height: 80%;
+  width: 95%;
+  margin-top: 2.5%;
+  border: 2px solid black;
 }
 
 .playerInfo-profile .profileInfo {
@@ -42,6 +44,7 @@
   bottom: 85%;
   left: 45%;
   position: absolute;
+  border: 2px solid black;
 }
 
 .playerInfo-info {

@@ -11,39 +11,72 @@
 .main-container {
   flex-grow: 1;
   background: blue;
-  padding: 10px 10px 10px 0;
+  padding: 7px 10px 7px 5px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   height: 70%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 2px solid black;
 }
 
 .main-journal {
   height: 100%;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding: 20px;
-  background: white;
-  border: 3px rgb(230, 230, 230) solid;
+  background: #fefeff;
   border-left: none;
   border-top: none;
+  position: relative;
+  border: 2px solid black;
+}
+
+.main-holes {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: 
+    left 10px top 0px 
+    / 6% 10% 
+    repeat-y 
+    radial-gradient(
+      circle, 
+      blue 8px, 
+      black 9px 9px, 
+      transparent 11px
+      );
+  /* position: x y, / size, amount, repeat direction, circle */
+  position: absolute;
+}
+
+.main-dashes {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: 
+    left 40px top 0px 
+    / 10% 7% 
+    repeat-y 
+    linear-gradient(
+      90deg, 
+      #f56465,
+      #f56465 1px,
+      transparent 1px,
+      transparent 1lh
+    );
+  /* position: x y, / size, amount, repeat direction, circle */
+  position: absolute;
 }
 
 .main-journalContainer {
   height: inherit;
-  background: white
+  width: 97%;
+  background:  
+  left 50px top -6px
     repeating-linear-gradient(
-      black,
-      black 1px,
+      #4DADF9,
+      #4DADF9 1px,
       transparent 1px,
       transparent 1lh
     );
-  /* background-size: 25px 25px; */
-}
-
-.main-journalContainer {
+  background-repeat: no-repeat;
   white-space: pre;
-
   font-size: 1lh;
 }
 
