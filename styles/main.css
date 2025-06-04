@@ -20,11 +20,28 @@
 
 .main-journal {
   height: 100%;
-  background: #fefeff;
+  background: #f4eff7;
   border-left: none;
   border-top: none;
   position: relative;
-  border: 2px solid black;
+  /* border: 2px solid black; */
+  box-shadow: 
+    #e3dceb 1px 1px,
+    #d2c6db 2px 2px,
+    #b5a8c0 3px 3px,
+    rgba(100, 85, 100, 0.15) 4px 4px,
+    black 1px -1px,
+    black 2px 0px,
+    black 3px 1px,
+    black 4px 3px,
+
+    black -1px 0px,
+    black 0px 1px, 
+    black 1px 2px,
+    black 2px 3px,
+    black 3px 4px,
+
+    black -1px -1px;
 }
 
 .main-holes {
@@ -33,13 +50,13 @@
   height: 100%;
   background: 
     left 10px top 0px 
-    / 6% 10% 
+    / 6% 11% 
     repeat-y 
     radial-gradient(
       circle, 
       blue 8px, 
       black 9px 9px, 
-      transparent 11px
+      transparent 9px
       );
   /* position: x y, / size, amount, repeat direction, circle */
   position: absolute;
@@ -55,8 +72,8 @@
     repeat-y 
     linear-gradient(
       90deg, 
-      #f56465,
-      #f56465 1px,
+      #c19793,
+      #c19793 1px,
       transparent 1px,
       transparent 1lh
     );
@@ -79,13 +96,6 @@
   white-space: pre;
   font-size: 1lh;
 }
-
-/* .main-journalContainer *::after {
-  content: " ";
-  height: 0.75px;
-  background-image: linear-gradient(black);
-  display: block;
-} */
 
 .main-nav {
   height: 70%;
