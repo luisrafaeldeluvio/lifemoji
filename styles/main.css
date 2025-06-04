@@ -99,6 +99,9 @@
 
 .main-nav {
   height: 70%;
+  min-width: 0;
+  min-height: 0;
+  flex-basis: 3%;
 }
 
 .main-nav ul {
@@ -113,46 +116,45 @@
   background: red;
   padding: 2.5px;
   font-size: 0.9em;
-  right: 20%;
   position: relative;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: 1.5em;
+  height: 6em;
+  width: 1.25em;
+  padding-top: 3em;
+  /* rotate: 90deg; */
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.main-nav li > span {
+  display: inline-block;
+  rotate: 90deg;
+  transform-origin: 40% 12%;
+  
 }
 
 .main-nav li:nth-child(1) {
   background: brown;
+  right: 72%;
 }
 
 .main-nav li:nth-child(2) {
   background: yellow;
+  right: 76%;
 }
 
 .main-nav li:nth-child(3) {
   background: purple;
+  right: 73%;
 }
 
 .main-nav li:nth-child(4) {
   background: blue;
+  right: 98%;
 }
 
 .main-nav li:nth-child(5) {
   background: gray;
-}
-
-.main-nav li:nth-child(6) {
-  background: red;
-}
-
-.main-nav li:nth-child(7) {
-  background: green;
-}
-
-.main-nav li:nth-child(8) {
-  background: orange;
-}
-
-.main-nav li:nth-child(9) {
-  background: white;
+  right: 74%;
 }
 
 .main-nav li.-currentNav {
