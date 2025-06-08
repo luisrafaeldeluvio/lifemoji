@@ -1,29 +1,56 @@
-@import url("./playerInfo.css");
+@import url("./panel.css");
 @import url("./main.css");
 @import url("./dialog.css");
 
+:root {
+  --journal-cover: #816a5c;
+  --journal-paper: #f4eff7;
+  --journal-lines: #4dadf9;
+  --text-m: 1rem;
+}
+
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
   /* background: WHITE; */
   /* border: 0.5px solid black; */
   size: 16px;
 }
 
 @font-face {
-  font-family: OneStory;
   src: url("../assets/OneStory.otf") format("opentype");
+  font-family: OneStory;
 }
 
 html,
 body {
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 
 body {
+  background: #ba8c63;
   font-size: 16px;
   font-family: OneStory, serif;
-  background: #ba8c63;
+}
+
+.text--xs {
+  font-size: 0.5rem;
+}
+
+.text--s {
+  font-size: 0.75rem;
+}
+
+.text--m {
+  font-size: 1rem;
+}
+
+.text--l {
+  font-size: 1.5rem;
+}
+
+.text--xl {
+  font-size: 1.75rem;
 }

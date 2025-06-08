@@ -1,0 +1,55 @@
+.panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0.5em;
+}
+
+.card {
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 2px solid black;
+  width: 100px;
+  height: 100px;
+}
+
+.panel__profile {
+  transform: rotate(2deg);
+  background: white;
+}
+
+.panel__profile img {
+  display: block;
+  margin-top: 2.5%;
+  margin-right: auto;
+  margin-left: auto;
+  border: 2px solid black;
+  width: 95%;
+  height: 80%;
+}
+
+.panel__profile::before {
+  display: inline-block;
+  position: absolute;
+  bottom: 85%;
+  left: 45%;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: #bb0a0a;
+  width: 10px;
+  height: 10px;
+  content: "";
+}
+
+.panel__info {
+  transform: rotate(-2deg);
+  background: yellow;
+  padding: 10px;
+}
+
+.panel__stats {
+  transform: rotate(1deg);
+  background: limegreen;
+  padding: 10px;
+}

@@ -4,68 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/style.css" />
-    <!-- <script type="module" src="scripts/script.js" async></script> -->
+    <script type="module" src="scripts/script.js" async></script>
     <title>Document</title>
   </head>
   <body>
-    <aside class="playerInfo">
-      <!-- post-it notes -->
-      <section class="playerInfo-profile -section">
-        <!-- profile, change to <figure>  -->
+    <aside class="panel">
+
+      <section class="panel__profile card">
         <img src="./assets/smart_car.jpg" alt="profile" />
-        <!-- or just use svg -->
-        <span class="profileInfo">male, 21</span>
+        <span class="text--m">male, 21</span>
       </section>
-      <section class="playerInfo-info -section">
-        <!-- info -->
-        <p id="playerInfo-fullname">john doe</p>
-        <p>status</p>
-        <p>$2,379.21</p>
+      
+      <section class="panel__info card">
+        <p class="js-fullname text--m">john doe</p>
+        <p class="text--m">status</p>
+        <p class="js-money text--m"> $2,379.21</p>
       </section>
-      <section class="playerInfo-stats -section">
-        <!-- stats -->
-        <p id="playerInfo-joyStat">🙂</p>
-        <p id="playerInfo-healthStat">❤️</p>
-        <!-- use emojis instead (that looks like scribbles) -->
-        <p id="playerInfo-smartsStat">🧠</p>
-        <p id="playerInfo-looksStat">👀</p>
+
+      <section class="panel__stats card">
+        <p class="js-stat-joy">🙂</p>
+        <p class="js-stat-health">❤️</p>
+        <p class="js-stat-smarts">🧠</p>
+        <p class="js-stat-looks">👀</p>
       </section>
+
     </aside>
     <main class="main">
-      <nav class="minor-nav">
+      
+      <nav class="main__secondary-nav">
          <ul>
-          <li>Journal</li>
-          <!-- on hover, curl as if going to flip -->
-          <li>Goals</li>
-          <li>Skills</li>
-          <li>School</li>
+          <li>❤️</li>
+          <li>💵</li>
+          <li>🏆</li>
+          <li>💼</li>
         </ul>
       </nav>
-      <div class="main-container"> <!-- cover -->
-        <article class="main-journal"> <!-- paper -->
-          <div class="main-holes"></div>
-          <div class="main-dashes"></div>
-          <!-- notebook -->
-          <div class="main-journalContainer"></div> <!-- lines -->
+
+      <div class="main__journal">
+        <article class="main__journal__container">
+          <div class="main__journal__holes"></div>
+          <div class="main__journal__dashes"></div>
+          
+          <div class="main__journal__paper js-journal"></div>
         </article>
       </div>
-      <!-- a button for aging up, at the bottom of journal, will appear as a pencil/pen -->
        
-      <nav class="main-nav">
+      <nav class="main__primary-nav">
         <ul>
           <li>Journal</li>
           <!-- on hover, curl as if going to flip -->
-          <li>Goals</li>
           <li>Skills</li>
           <li>School</li>
-          <li>Work</li>
+          <li>Hobbies</li>
+          <li>Others</li>
         </ul>
       </nav>
+
     </main>
-    <div>
-      <button id="growup">Pencil</button>
+
+
+    <footer>
+      <button class="js-growup">Pencil</button>
       <button>Eraser</button>
-    </div>
+    </footer>
   </body>
 </html>
 

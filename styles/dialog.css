@@ -1,44 +1,45 @@
 .dialog {
+  align-self: center;
+  justify-self: center;
+  border: none;
+  border: 2px solid black;
+  padding: 0.75rem;
   /* crumpled paper */
   width: 60%;
   height: max-content;
   min-height: 10%;
-  padding: 0.75rem;
-  justify-self: center;
-  align-self: center;
-  border: none;
 }
 
-.dialog-title {
+.dialog__title {
   text-align: center;
 }
 
-.dialog-text {
+.dialog__text {
   text-align: center;
 }
 
-.dialog-statsContainer {
+.dialog__stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 100%;
   height: 3.5rem;
+}
+
+.dialog__buttons {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-}
-
-.dialog-buttonsContainer {
   width: 100%;
   height: 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
-.dialog-buttonsContainer > button {
-  width: 50%;
-  justify-self: center;
+.dialog__buttons > button {
   align-self: center;
+  justify-self: center;
   border: none;
   background: white;
+  width: 50%;
 }
 
 ::backdrop {

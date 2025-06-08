@@ -1,98 +1,109 @@
+.main__secondary-nav > ul > li,
+.main__journal,
+.main__primary-nav li {
+  border: 2px solid black;
+}
+
 .main {
   display: flex;
   flex-flow: wrap row;
-  margin: 0 0.5em 0.5m 0;
-  height: 70%;
   align-content: flex-start;
+  margin-right: 0.5em;
+  height: 70%;
 }
 
-.minor-nav {
+.main__secondary-nav {
   flex: 1 1 100%;
   align-self: flex-start;
-  transform: translateY(17%);
+  transform: translateY(21%);
 }
 
-.minor-nav ul {
+.main__secondary-nav > ul {
   display: flex;
-  flex-direction: row;
   position: relative;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-evenly;
   list-style: none;
 }
 
-.minor-nav > ul > li {
-  background: red;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  border: 2px solid black;
+.main__secondary-nav > ul > li {
+  border-bottom: none;
   border-radius: 5px 5px 0px 0px;
+  background: red;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
-.main-container {
-  height: 100%;
+.main__journal {
   flex-grow: 1;
-  background: #816a5c;
-  padding: 7px 10px 7px 5px;
   border-radius: 0px 20px 20px 0px;
-  border: 2px solid black;
+  background: var(--journal-cover);
+  padding: 7px 13px 10px 5px;
+  height: 93%;
 }
 
-.main-journal {
-  height: 100%;
-  background: #f4eff7;
-  border-left: none;
-  border-top: none;
+.main__journal__container {
   position: relative;
-  /* border: 2px solid black; */
-  box-shadow: #e3dceb 1px 1px, #d2c6db 2px 2px, #b5a8c0 3px 3px,
-    rgba(100, 85, 100, 0.15) 4px 4px, black 1px -1px, black 2px 0px,
-    black 3px 1px, black 4px 3px, black -1px 0px, black 0px 1px, black 1px 2px,
-    black 2px 3px, black 3px 4px, black -1px -1px;
+  box-shadow:
+    #e3dceb 1px 1px,
+    #d2c6db 2px 2px,
+    #b5a8c0 3px 3px,
+    rgba(100, 85, 100, 0.15) 4px 4px,
+    black 1px -1px,
+    black 2px 0px,
+    black 3px 1px,
+    black 4px 3px,
+    black -1px 0px,
+    black 0px 1px,
+    black 1px 2px,
+    black 2px 3px,
+    black 3px 4px,
+    black -1px -1px;
+  border-top: none;
+  border-left: none;
+  background: var(--journal-paper);
+  height: 100%;
 }
 
-.main-holes {
+.main__journal__holes {
   display: flex;
-  width: 100%;
-  height: 100%;
+  position: absolute;
   background: left 10px top 0px / 6% 11% repeat-y
-    radial-gradient(circle, #816a5c 8px, transparent 9px);
-  /* position: x y, / size, amount, repeat direction, circle */
-  position: absolute;
-}
-
-.main-dashes {
-  display: flex;
+    radial-gradient(circle, var(--journal-cover) 8px, transparent 9px);
   width: 100%;
   height: 100%;
-  background: left 40px top 0px / 10% 7% repeat-y
-    linear-gradient(
-      90deg,
-      #c19793,
-      #c19793 1px,
-      transparent 1px,
-      transparent 1lh
-    );
-  /* position: x y, / size, amount, repeat direction, circle */
+}
+
+.main__journal__dashes {
+  display: flex;
   position: absolute;
+  background: 11.5%/1px 100% no-repeat
+    repeating-linear-gradient(to bottom, transparent 0 4px, #c19793 4px 8px);
+  width: 100%;
+  height: 100%;
 }
 
-.main-journalContainer {
-  height: inherit;
-  width: 97%;
-  background: left 50px top -6px repeating-linear-gradient(#4dadf9, #4dadf9 1px, transparent
-        1px, transparent 1lh);
+.main__journal__paper {
+  margin-right: 3%;
+  background: left 41px top -6px
+    repeating-linear-gradient(
+      transparent 0 21px,
+      var(--journal-lines) 1px 1.125lh
+    );
   background-repeat: no-repeat;
+  padding-left: 15%;
+  height: 100%;
+  font-size: var(--text-m);
   white-space: pre;
-  font-size: 1lh;
 }
 
-.main-nav {
+.main__primary-nav {
   /* min-width: 0; */
   /* min-height: 0; */
   /* flex-basis: 3%; */
 }
 
-.main-nav ul {
+.main__primary-nav ul {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -100,55 +111,53 @@
   list-style-type: none;
 }
 
-.main-nav li {
+.main__primary-nav li {
+  position: relative;
+  border-left: none;
+
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   background: red;
-  font-size: 0.9rem;
 
   padding: 2.5px;
   padding-top: 0.75em;
   padding-left: 1.125em;
-
-  position: relative;
-  height: 4em;
   width: 1.25em;
-
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border: 2px black solid;
-  border-left: none;
+  height: 4em;
+  font-size: 0.9rem;
 
   writing-mode: vertical-rl;
   text-orientation: mixed;
 }
 
-.main-nav li:nth-child(1) {
+.main__primary-nav li:nth-child(1) {
+  right: 64%;
   background: brown;
-  right: 39%;
 }
 
-.main-nav li:nth-child(2) {
+.main__primary-nav li:nth-child(2) {
+  right: 54%;
   background: yellow;
-  right: 43%;
 }
 
-.main-nav li:nth-child(3) {
+.main__primary-nav li:nth-child(3) {
+  right: 57%;
   background: purple;
-  right: 46%;
 }
 
-.main-nav li:nth-child(4) {
+.main__primary-nav li:nth-child(4) {
+  right: 62%;
   background: blue;
-  right: 51%;
 }
 
-.main-nav li:nth-child(5) {
+.main__primary-nav li:nth-child(5) {
+  right: 52%;
   background: gray;
-  right: 41%;
 }
 
-.main-nav li.-currentNav {
+.main__primary-nav li.-currentNav {
+  box-shadow: none;
   /* make it so that all the tabs above the current tab also dissapear */
   background: transparent;
-  box-shadow: none;
   font-size: 0;
 }
