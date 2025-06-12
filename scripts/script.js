@@ -79,8 +79,6 @@ const dialog = new Dialog({
 });
 await dialog.createDialog();
 
-
-
 //add a close button
 document
   .querySelectorAll(".js-dialog-button")[0]
