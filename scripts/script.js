@@ -42,8 +42,11 @@ document.querySelector(".js-growup").addEventListener("click", async () => {
 
 document.querySelector(".js-journal").innerHTML = await renderJournal();
 
-const a = new Dialog({
-  //for the npc actions
+// TODO:
+// a function or method for managing multiple dialogs
+// once the close button have been deleted, delete the dialog elem from the dom tree, then load the next dialog from the QUEUE
+
+const dialog = new Dialog({
   text: "text flavor or something",
   title: "you",
   stats: ["smarts", "health"],
@@ -51,7 +54,7 @@ const a = new Dialog({
     button1: {
       text: "hello",
       action: () => {
-        console.log("this is a functioin from the button");
+        console.log("this is a functioin from the button2");
       },
     },
     button2: {
@@ -74,10 +77,14 @@ const a = new Dialog({
     },
   },
 });
+await dialog.createDialog();
 
-console.log(a);
 
-a.onAction("button1");
-
-// TODO:
-// a function or method for managing multiple dialogs
+//add a close button
+document
+  .querySelectorAll(".js-dialog-button")[0]
+  .addEventListener("click", () => {
+    dialog.close();
+  });
+dialog.onAction("button1");
+console.log(document.querySelector(".dialog"));

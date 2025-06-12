@@ -88,7 +88,7 @@
   background: left 41px top -6px
     repeating-linear-gradient(
       transparent 0 21px,
-      var(--journal-lines) 1px 1.125lh
+      var(--journal-lines) 1px 1.188lh
     );
   background-repeat: no-repeat;
   padding-left: 15%;

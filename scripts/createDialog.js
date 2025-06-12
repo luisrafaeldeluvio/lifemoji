@@ -6,7 +6,7 @@ class Dialog {
     this.text = text;
     this.stats = stats;
     this.buttons = buttons;
-    this.createDialog();
+    // this.createDialog();
   }
 
   async createDialog() {
@@ -44,8 +44,6 @@ class Dialog {
     }
 
     if (Object.keys(this.buttons).length > 0) {
-      console.log(Object.keys(this.buttons).length);
-
       const element = document.createElement("div");
       element.className = "dialog__buttons";
 
@@ -58,7 +56,7 @@ class Dialog {
       dialog.appendChild(element);
     }
 
-    const location = document.querySelector(".panel");
+    const location = document.querySelector(".main");
 
     document.body.insertBefore(dialog, location);
     document.querySelector(".dialog").showModal();
@@ -86,6 +84,11 @@ class Dialog {
 
   onAction(buttonNum) {
     this.buttons[buttonNum].action();
+  }
+
+  close() {
+    document.querySelector(".dialog").close();
+    console.log("DIALOG CLOSED");
   }
 }
 
