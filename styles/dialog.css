@@ -10,6 +10,13 @@
   min-height: 10%;
 }
 
+.dialog__close {
+  float: right;
+  border: none;
+  background: none;
+  text-decoration: none;
+}
+
 .dialog__title {
   text-align: center;
 }

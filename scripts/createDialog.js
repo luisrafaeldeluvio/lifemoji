@@ -17,8 +17,13 @@ class Dialog {
     document
       .querySelectorAll(".js-dialog-button")[0] //the first button
       .addEventListener("click", () => {
-        this.close();
         this.onAction("button1");
+      });
+
+    document
+      .querySelectorAll(".js-close-button")[0] //the first button
+      .addEventListener("click", () => {
+        this.close();
       });
   }
 
@@ -26,6 +31,11 @@ class Dialog {
     const dialog = document.createElement("dialog");
     dialog.setAttribute("closedby", "closerequest");
     dialog.className = "dialog";
+
+    const el = document.createElement("button");
+    el.innerText = "x";
+    el.className = "dialog__close js-close-button";
+    dialog.appendChild(el);
 
     if (title) {
       const element = document.createElement("h1");
@@ -77,11 +87,6 @@ class Dialog {
   }
 
   async pushDialog() {
-    // new Promise((resolve, reject) => {
-    // if (Dialog.queueddialog.length > 0) {
-    //   console.log(0);
-    // }
-
     console.log(`isqueued = ${Dialog.isqueued}`);
 
     if (Dialog.isqueued) {
