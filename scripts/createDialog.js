@@ -159,7 +159,10 @@ class Dialog {
     document.querySelector(".dialog").remove();
     console.log("DIALOG CLOSED");
     Dialog.isqueued = false;
-    this.pushDialog();
+
+    if (Dialog.queueddialog.length > 0) {
+      this.pushDialog();
+    }
   }
 }
 
