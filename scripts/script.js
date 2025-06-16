@@ -25,7 +25,7 @@ import { Dialog } from "./createDialog.js";
 const player = await loadPlayer();
 
 console.log(player);
-
+document.querySelector(".js-journal").innerHTML = await renderJournal();
 document.querySelector(".js-growup").addEventListener("click", async () => {
   player.age++;
   player.stats.joy++;
@@ -39,8 +39,6 @@ document.querySelector(".js-growup").addEventListener("click", async () => {
 
 // console.log(npc);
 // npc.spendTime();
-
-document.querySelector(".js-journal").innerHTML = await renderJournal();
 
 // TODO:
 // a function or method for managing multiple dialogs
@@ -77,14 +75,32 @@ const dialog = new Dialog({
     },
   },
 });
-await dialog.createDialog();
+// dialog.pushDialog();
 
+const x = new Dialog({
+  title: "seoncd dialog",
+  buttons: {
+    button1: {
+      text: "test",
+      action: () => {
+        x.close();
+      },
+    },
+  },
+});
+// await x.pushDialog();
 
-//add a close button
-document
-  .querySelectorAll(".js-dialog-button")[0]
-  .addEventListener("click", () => {
-    dialog.close();
-  });
-dialog.onAction("button1");
-console.log(document.querySelector(".dialog"));
+const xy = new Dialog({
+  title: "third dialog",
+  buttons: {
+    button1: {
+      text: "test",
+      action: () => {
+        xy.close();
+      },
+    },
+  },
+});
+// await xy.pushDialog();
+
+// add a close button

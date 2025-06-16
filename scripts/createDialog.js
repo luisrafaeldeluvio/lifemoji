@@ -1,34 +1,47 @@
 import { loadPlayer } from "./data/playerData";
 
 class Dialog {
+  static isqueued = false;
+  static dialogcount = 0;
+  static queueddialog = [];
+
   constructor({ title, text, stats = [], buttons = {} } = {}) {
     this.title = title;
     this.text = text;
     this.stats = stats;
     this.buttons = buttons;
-    // this.createDialog();
+    this.pushDialog();
   }
 
-  async createDialog() {
+  createListener() {
+    document
+      .querySelectorAll(".js-dialog-button")[0] //the first button
+      .addEventListener("click", () => {
+        this.close();
+        this.onAction("button1");
+      });
+  }
+
+  async createDialog(title, text, stats, buttons) {
     const dialog = document.createElement("dialog");
     dialog.setAttribute("closedby", "closerequest");
     dialog.className = "dialog";
 
-    if (this.title) {
+    if (title) {
       const element = document.createElement("h1");
-      element.innerText = this.title;
+      element.innerText = title;
       element.className = "dialog__title";
       dialog.appendChild(element);
     }
 
-    if (this.text) {
+    if (text) {
       const element = document.createElement("p");
-      element.innerText = this.text;
+      element.innerText = text;
       element.className = "dialog__text";
       dialog.appendChild(element);
     }
 
-    if (this.stats.length > 0) {
+    if (stats.length > 0) {
       const player = await loadPlayer();
 
       const element = document.createElement("div");
@@ -43,11 +56,11 @@ class Dialog {
       dialog.appendChild(element);
     }
 
-    if (Object.keys(this.buttons).length > 0) {
+    if (Object.keys(buttons).length > 0) {
       const element = document.createElement("div");
       element.className = "dialog__buttons";
 
-      for (const i of Object.entries(this.buttons)) {
+      for (const i of Object.entries(buttons)) {
         const elem = document.createElement("button");
         elem.innerText = `${i[1].text}`;
         elem.className = "js-dialog-button";
@@ -59,7 +72,58 @@ class Dialog {
     const location = document.querySelector(".main");
 
     document.body.insertBefore(dialog, location);
+    this.createListener();
     document.querySelector(".dialog").showModal();
+  }
+
+  async pushDialog() {
+    // new Promise((resolve, reject) => {
+    // if (Dialog.queueddialog.length > 0) {
+    //   console.log(0);
+    // }
+
+    console.log(`isqueued = ${Dialog.isqueued}`);
+
+    if (Dialog.isqueued) {
+      Dialog.queueddialog.push({
+        title: this.title,
+        text: this.text,
+        stats: this.stats,
+        buttons: this.buttons,
+      });
+
+      console.log(`promise rejected, isqueued = ${Dialog.isqueued}`);
+
+      console.log(
+        Array.isArray(Dialog.queueddialog),
+        typeof Dialog.queueddialog,
+        // Object.keys(Dialog.queueddialog),
+        // Object.entries(Dialog.queueddialog),
+        Dialog.queueddialog.length,
+        Dialog.queueddialog,
+      );
+
+      return;
+    }
+
+    if (!Dialog.isqueued) {
+      if (Dialog.queueddialog.length > 0) {
+        console.log(Dialog.queueddialog[0]);
+        const dialogdata = Dialog.queueddialog[0];
+        this.createDialog(
+          dialogdata.title,
+          dialogdata.text,
+          dialogdata.stats,
+          dialogdata.buttons,
+        );
+        Dialog.queueddialog.shift();
+        return;
+      }
+
+      Dialog.isqueued = true;
+      console.log(`promise resolved: isqueued = ${Dialog.isqueued}`);
+      this.createDialog(this.title, this.text, this.stats, this.buttons);
+    }
   }
 
   // [ Button Example ]
@@ -87,8 +151,10 @@ class Dialog {
   }
 
   close() {
-    document.querySelector(".dialog").close();
+    document.querySelector(".dialog").remove();
     console.log("DIALOG CLOSED");
+    Dialog.isqueued = false;
+    this.pushDialog();
   }
 }
 
