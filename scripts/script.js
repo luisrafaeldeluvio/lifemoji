@@ -52,7 +52,7 @@ const dialog = new Dialog({
     button1: {
       text: "hello",
       action: () => {
-        console.log("this is a functioin from the button2");
+        console.log("this is a functioin from the button1");
       },
     },
     button2: {
