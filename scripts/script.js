@@ -83,7 +83,7 @@ const x = new Dialog({
     button1: {
       text: "test",
       action: () => {
-        x.close();
+        console.log("this is a functioin from the button4");
       },
     },
   },
@@ -96,7 +96,7 @@ const xy = new Dialog({
     button1: {
       text: "test",
       action: () => {
-        xy.close();
+        console.log("this is a functioin from the button4");
       },
     },
   },

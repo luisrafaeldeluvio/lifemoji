@@ -9,20 +9,20 @@ class Dialog {
     this.text = text;
     this.stats = stats;
     this.buttons = buttons;
-    this.pushDialog();
+    this.#pushDialog();
   }
 
-  createListener(buttonCount) {
+  #createListener(buttonCount) {
     for (let i = 0; i < buttonCount; i++) {
       document
         .querySelectorAll(".js-dialog-button")
         [i].addEventListener("click", () => {
-          this.onAction(`button${i + 1}`);
+          this.buttons[`button${i + 1}`].action();
         });
     }
 
     document.querySelector(".js-close-button").addEventListener("click", () => {
-      this.close();
+      this.#close();
     });
   }
 
@@ -84,7 +84,7 @@ class Dialog {
 
     document.body.insertBefore(dialog, dialogLocation);
     document.querySelector(".dialog").showModal();
-    this.createListener(Object.keys(buttons).length);
+    this.#createListener(Object.keys(buttons).length);
   }
 
   // [ Button Example ]
@@ -132,7 +132,7 @@ class Dialog {
     this.#createDialog(this.title, this.text, this.stats, this.buttons);
   }
 
-  pushDialog() {
+  #pushDialog() {
     const x = Dialog.isqueued
       ? this.#pushToQueue()
       : Dialog.queueddialog.length > 0
@@ -140,15 +140,11 @@ class Dialog {
         : this.#createDialogFromConstructor();
   }
 
-  onAction(buttonNum) {
-    this.buttons[buttonNum].action();
-  }
-
-  close() {
+  #close() {
     document.querySelector(".dialog").remove();
     Dialog.isqueued = false;
 
-    Dialog.queueddialog.length > 0 && this.pushDialog();
+    Dialog.queueddialog.length > 0 && this.#pushDialog();
   }
 }
 
