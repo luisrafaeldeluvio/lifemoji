@@ -8,7 +8,7 @@ import { loadNpc } from "./data/npcData.js";
 import { Dialog } from "./createDialog.js";
 
 // function newPlayer() {
-//   const playerA = new Player({ age: 24, relations: "player" });
+//   const playerA = new Player({ relations: "player" });
 //   const npc = new Npc({ relations: "parent" });
 //   const npc2 = new Npc({ relations: "parent" });
 //   playerA.npcIds = npc.id;
@@ -24,75 +24,86 @@ import { Dialog } from "./createDialog.js";
 
 const player = await loadPlayer();
 
-console.log(player);
-document.querySelector(".js-journal").innerHTML = await renderJournal();
-document.querySelector(".js-growup").addEventListener("click", async () => {
+document.querySelector(".js-growup").addEventListener("click", () => {
+  ageUp();
+});
+
+function ageUp() {
   player.age++;
   player.stats.joy++;
   writeSave("player", player);
   console.log(player);
   simpleEvent("Hello World2288!");
-  document.querySelector(".js-journal").innerHTML = await renderJournal();
-});
+  updateRender();
+}
+
+async function updateRender() {
+  const query = {
+    ".js-journal": await renderJournal(),
+    ".js-fullname": player.fullName,
+    ".js-stat-joy": player.stats._joy,
+    ".js-stat-health": player.stats._health,
+    ".js-stat-smarts": player.stats._smarts,
+    ".js-stat-looks": player.stats._looks,
+    ".js-profile": `${player.sex}, ${player.age}`,
+  };
+
+  for (const [key, value] of Object.entries(query)) {
+    document.querySelector(key).innerHTML = value;
+  }
+}
+
+updateRender();
 
 // const npc = await loadNpc("eu6o7m1116mj6np5");
 
 // console.log(npc);
 // npc.spendTime();
 
-// TODO:
-// a function or method for managing multiple dialogs
-// once the close button have been deleted, delete the dialog elem from the dom tree, then load the next dialog from the QUEUE
+// const dialog = new Dialog({
+//   text: "text flavor or something",
+//   title: "you",
+//   stats: ["smarts", "health"],
+//   buttons: {
+//     button1: {
+//       text: "hello",
+//       action: () => {
+//         console.log("this is a functioin from the button1");
+//       },
+//     },
+//     button2: {
+//       text: "hello2",
+//       action: () => {
+//         console.log("this is a functioin from the button2");
+//       },
+//     },
+//     button3: {
+//       text: "hello3",
+//       action: () => {
+//         console.log("this is a functioin from the button3");
+//       },
+//     },
+//     button4: {
+//       text: "hello4",
+//       action: () => {
+//         console.log("this is a functioin from the button4");
+//       },
+//     },
+//   },
+// });
 
-const dialog = new Dialog({
-  text: "text flavor or something",
-  title: "you",
-  stats: ["smarts", "health"],
-  buttons: {
-    button1: {
-      text: "hello",
-      action: () => {
-        console.log("this is a functioin from the button1");
-      },
-    },
-    button2: {
-      text: "hello2",
-      action: () => {
-        console.log("this is a functioin from the button2");
-      },
-    },
-    button3: {
-      text: "hello3",
-      action: () => {
-        console.log("this is a functioin from the button3");
-      },
-    },
-    button4: {
-      text: "hello4",
-      action: () => {
-        console.log("this is a functioin from the button4");
-      },
-    },
-  },
-});
-// dialog.pushDialog();
+// const x = new Dialog({
+//   title: "seoncd dialog",
+// });
 
-const x = new Dialog({
-  title: "seoncd dialog",
-});
-// await x.pushDialog();
-
-const xy = new Dialog({
-  title: "third dialog",
-  buttons: {
-    button1: {
-      text: "test",
-      action: () => {
-        console.log("this is a functioin from the button4");
-      },
-    },
-  },
-});
-// await xy.pushDialog();
-
-// add a close button
+// const xy = new Dialog({
+//   title: "third dialog",
+//   buttons: {
+//     button1: {
+//       text: "test",
+//       action: () => {
+//         console.log("this is a functioin from the button4");
+//       },
+//     },
+//   },
+// });

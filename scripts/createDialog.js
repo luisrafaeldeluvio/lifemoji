@@ -81,7 +81,7 @@ class Dialog {
       dialog.appendChild(closeButton);
     }
 
-    dialog.setAttribute("closedby", "closerequest");
+    dialog.setAttribute("closedby", "none");
     dialog.className = "dialog";
 
     document.body.insertBefore(dialog, dialogLocation);
