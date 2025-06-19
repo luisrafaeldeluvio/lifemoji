@@ -18,6 +18,7 @@ class Dialog {
         .querySelectorAll(".js-dialog-button")
         [i].addEventListener("click", () => {
           this.buttons[`button${i + 1}`].action();
+          this.#close();
         });
     }
 
@@ -73,14 +74,14 @@ class Dialog {
       }
 
       dialog.appendChild(element);
+    } else {
+      closeButton.innerText = "x";
+      closeButton.className = "dialog__close js-close-button";
+      dialog.appendChild(closeButton);
     }
 
     dialog.setAttribute("closedby", "closerequest");
     dialog.className = "dialog";
-
-    closeButton.innerText = "x";
-    closeButton.className = "dialog__close js-close-button";
-    dialog.appendChild(closeButton);
 
     document.body.insertBefore(dialog, dialogLocation);
     document.querySelector(".dialog").showModal();

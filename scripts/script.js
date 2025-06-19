@@ -79,14 +79,6 @@ const dialog = new Dialog({
 
 const x = new Dialog({
   title: "seoncd dialog",
-  buttons: {
-    button1: {
-      text: "test",
-      action: () => {
-        console.log("this is a functioin from the button4");
-      },
-    },
-  },
 });
 // await x.pushDialog();
 
