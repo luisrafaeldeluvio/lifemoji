@@ -1,8 +1,8 @@
 import { loadPlayer } from "./data/playerData";
 
 class Dialog {
-  static isqueued = false;
-  static queueddialog = [];
+  static isQueued = false;
+  static dialogQueue = [];
 
   constructor({ title, text, stats = [], buttons = {} } = {}) {
     this.title = title;
@@ -22,6 +22,7 @@ class Dialog {
         });
     }
 
+    if (buttonCount > 0) return;
     document.querySelector(".js-close-button").addEventListener("click", () => {
       this.#close();
     });
@@ -109,7 +110,7 @@ class Dialog {
   // },
 
   #pushToQueue() {
-    Dialog.queueddialog.push({
+    Dialog.dialogQueue.push({
       title: this.title,
       text: this.text,
       stats: this.stats,
@@ -118,34 +119,34 @@ class Dialog {
   }
 
   #createDialogFromQueue() {
-    const dialogdata = Dialog.queueddialog[0];
+    const dialogdata = Dialog.dialogQueue[0];
     this.#createDialog(
       dialogdata.title,
       dialogdata.text,
       dialogdata.stats,
       dialogdata.buttons,
     );
-    Dialog.queueddialog.shift();
+    Dialog.dialogQueue.shift();
   }
 
   #createDialogFromConstructor() {
-    Dialog.isqueued = true;
+    Dialog.isQueued = true;
     this.#createDialog(this.title, this.text, this.stats, this.buttons);
   }
 
   #pushDialog() {
-    const x = Dialog.isqueued
+    const x = Dialog.isQueued
       ? this.#pushToQueue()
-      : Dialog.queueddialog.length > 0
+      : Dialog.dialogQueue.length > 0
         ? this.#createDialogFromQueue()
         : this.#createDialogFromConstructor();
   }
 
   #close() {
     document.querySelector(".dialog").remove();
-    Dialog.isqueued = false;
+    Dialog.isQueued = false;
 
-    Dialog.queueddialog.length > 0 && this.#pushDialog();
+    Dialog.dialogQueue.length > 0 && this.#pushDialog();
   }
 }
 
