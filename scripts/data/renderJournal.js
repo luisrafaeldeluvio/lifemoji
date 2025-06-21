@@ -1,5 +1,11 @@
 function loadJournal() {
-  let maxLine = 18;
+  const journalContainer = document.querySelector(".js-journal");
+  const journalStyle = window.getComputedStyle(journalContainer);
+  let journalAmount =
+    Math.floor(
+      (parseInt(journalStyle.height) / parseInt(journalStyle.fontSize)) * 0.85,
+    ) / 2;
+  let majournalAmountxLine = 18;
   const journal = [];
 
   const request = window.indexedDB.open("PlayerData", 1);
@@ -13,13 +19,13 @@ function loadJournal() {
 
       cursorReq.onsuccess = (event) => {
         const cursor = event.target.result;
-        if (cursor && maxLine > 0) {
+        if (cursor && journalAmount > 0) {
           journal.push(cursor.value);
-          maxLine--;
+          journalAmount--;
           cursor.continue();
         } else {
           resolve(
-            journal.sort((a, b) => parseFloat(a.year) - parseFloat(b.year))
+            journal.sort((a, b) => parseFloat(a.year) - parseFloat(b.year)),
           );
         }
       };
@@ -29,20 +35,31 @@ function loadJournal() {
 
 async function renderJournal() {
   const journal = await loadJournal();
-  const sorted = Object.groupBy(journal, ({ year }) => year);
-  const keys = Object.keys(sorted);
+  const sortedValue = Object.groupBy(journal, ({ year }) => year);
+  const keys = Object.keys(sortedValue);
+
   const render = [];
+  const journalContainer = document.querySelector(".js-journal");
+  const journalStyle = window.getComputedStyle(journalContainer);
+  const journalAmount =
+    Math.floor(
+      (parseInt(journalStyle.height) / parseInt(journalStyle.fontSize)) * 0.85,
+    ) / 2;
 
   keys.forEach((i) => {
     render.push(`Year ${i} \n`);
-    for (const j in sorted[i]) {
-      render.push(`    ${sorted[i][j].log} \n`);
+    for (const j in sortedValue[i]) {
+      render.push(`    ${sortedValue[i][j].log} \n`);
     }
+    console.log(render);
   });
 
-  if (render.length > 18) {
-    render.splice(0, render.length - 18);
-  }
+  // if (render.length > journalAmount) {
+  //   render.splice(0, render.length - journalAmount);
+  // }
+
+  console.log(sortedValue, keys, journalAmount);
+
   return render.join("");
 } //push to frontend
 

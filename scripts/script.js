@@ -28,12 +28,14 @@ document.querySelector(".js-growup").addEventListener("click", () => {
   ageUp();
 });
 
-function ageUp() {
+async function ageUp() {
   player.age++;
-  player.stats.joy++;
+  player.stats._joy++;
   writeSave("player", player);
   console.log(player);
-  simpleEvent("Hello World2288!");
+  await simpleEvent(
+    `your age is ${player.age}, your happiness is ${player.stats._joy}`,
+  );
   updateRender();
 }
 
