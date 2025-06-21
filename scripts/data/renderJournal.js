@@ -1,14 +1,14 @@
-function loadJournal() {
-  const journalContainer = document.querySelector(".js-journal");
-  const journalStyle = window.getComputedStyle(journalContainer);
-  let journalAmount =
-    Math.floor(
-      (parseInt(journalStyle.height) / parseInt(journalStyle.fontSize)) * 0.85,
-    ) / 2;
-  let majournalAmountxLine = 18;
-  const journal = [];
+const journalContainer = document.querySelector(".js-journal");
+const journalStyle = window.getComputedStyle(journalContainer);
+const journalAmount = Math.floor(
+  ((parseInt(journalStyle.height) / parseInt(journalStyle.fontSize)) * 0.85) /
+    2,
+);
 
+function loadJournal() {
+  const journal = [];
   const request = window.indexedDB.open("PlayerData", 1);
+  let amount = journalAmount;
 
   return new Promise((resolve, reject) => {
     request.onsuccess = () => {
@@ -19,14 +19,12 @@ function loadJournal() {
 
       cursorReq.onsuccess = (event) => {
         const cursor = event.target.result;
-        if (cursor && journalAmount > 0) {
+        if (cursor && amount > 0) {
           journal.push(cursor.value);
-          journalAmount--;
+          amount--;
           cursor.continue();
         } else {
-          resolve(
-            journal.sort((a, b) => parseFloat(a.year) - parseFloat(b.year)),
-          );
+          resolve(journal);
         }
       };
     };
@@ -35,32 +33,18 @@ function loadJournal() {
 
 async function renderJournal() {
   const journal = await loadJournal();
-  const sortedValue = Object.groupBy(journal, ({ year }) => year);
-  const keys = Object.keys(sortedValue);
-
+  const value = Object.groupBy(journal, ({ year }) => year);
+  const keys = Object.keys(value);
   const render = [];
-  const journalContainer = document.querySelector(".js-journal");
-  const journalStyle = window.getComputedStyle(journalContainer);
-  const journalAmount =
-    Math.floor(
-      (parseInt(journalStyle.height) / parseInt(journalStyle.fontSize)) * 0.85,
-    ) / 2;
 
   keys.forEach((i) => {
     render.push(`Year ${i} \n`);
-    for (const j in sortedValue[i]) {
-      render.push(`    ${sortedValue[i][j].log} \n`);
+    for (const j in value[i]) {
+      render.push(`    ${value[i][j].log} \n`);
     }
-    console.log(render);
   });
 
-  // if (render.length > journalAmount) {
-  //   render.splice(0, render.length - journalAmount);
-  // }
-
-  console.log(sortedValue, keys, journalAmount);
-
   return render.join("");
-} //push to frontend
+}
 
-export { loadJournal, renderJournal };
+export { renderJournal };

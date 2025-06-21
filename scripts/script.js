@@ -1,6 +1,6 @@
 import { Npc } from "./model/npc.js";
 import { Player } from "./model/player.js";
-import { loadJournal, renderJournal } from "./data/renderJournal.js";
+import { renderJournal } from "./data/renderJournal.js";
 import { simpleEvent } from "./events.js";
 import { readSave, readKey, writeSave } from "./data/saveManager.js";
 import { loadPlayer } from "./data/playerData.js";
