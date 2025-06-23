@@ -5,6 +5,10 @@ import { loadNpc } from "./data/npcData.js";
 import { Dialog } from "./createDialog.js";
 import { updateRender } from "./updateRender.js";
 import { ageUp } from "./ageUp.js";
+import { Player } from "./model/player.js";
+import { Npc } from "./model/npc.js";
+
+// console.log(true);
 
 // function newPlayer() {
 //   const playerA = new Player({ relations: "player" });
@@ -21,7 +25,7 @@ import { ageUp } from "./ageUp.js";
 
 // newPlayer();
 
-const player = playerData;
+const player = await playerData();
 
 console.log(player);
 

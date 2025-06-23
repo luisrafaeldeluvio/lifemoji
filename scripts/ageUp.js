@@ -3,9 +3,8 @@ import { playerData } from "./data/playerData.js";
 import { updateRender } from "./updateRender.js";
 import { writeSave } from "./data/saveManager.js";
 
-const player = playerData;
-
 async function ageUp() {
+  const player = await playerData();
   player.age++;
   player.stats._joy++;
   writeSave("player", player);

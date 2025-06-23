@@ -48,7 +48,7 @@ class Dialog {
     }
 
     if (stats.length > 0) {
-      const player = playerData;
+      const player = await playerData();
       const element = document.createElement("div");
 
       element.className = "dialog__stats";

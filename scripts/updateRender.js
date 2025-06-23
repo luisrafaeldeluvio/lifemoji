@@ -1,9 +1,9 @@
 import { renderJournal } from "./data/renderJournal.js";
 import { playerData } from "./data/playerData.js";
 
-const player = playerData;
-
 async function updateRender() {
+  const player = await playerData();
+
   const query = {
     ".js-journal": await renderJournal(),
     ".js-fullname": player.fullName,

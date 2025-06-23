@@ -42,6 +42,14 @@
   height: 93%;
 }
 
+.main__journal > * {
+  display: none;
+}
+
+.main__journal--opened {
+  display: block !important; 
+}
+
 .main__journal__container {
   position: relative;
   box-shadow:
@@ -93,6 +101,7 @@
   background-repeat: no-repeat;
   padding-left: 15%;
   height: 100%;
+  width: 100%;
   font-size: var(--text-m);
   white-space: pre;
 }
