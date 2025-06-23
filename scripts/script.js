@@ -35,6 +35,36 @@ document.querySelector(".js-growup").addEventListener("click", () => {
 
 updateRender();
 
+function addNavListener() {
+  for (const element of document.querySelector(".main__secondary-nav ul")
+    .children) {
+    element.addEventListener("click", () => {
+      for (const element of document.querySelector(".main__journal").children) {
+        element.classList.remove("main__journal--opened");
+      }
+
+      document
+        .querySelector(`.main__journal__${element.id}`)
+        .classList.add("main__journal--opened");
+    });
+  }
+
+  for (const element of document.querySelector(".main__primary-nav ul")
+    .children) {
+    element.addEventListener("click", () => {
+      for (const element of document.querySelector(".main__journal").children) {
+        element.classList.remove("main__journal--opened");
+      }
+
+      document
+        .querySelector(`.main__journal__${element.id}`)
+        .classList.add("main__journal--opened");
+    });
+  }
+}
+
+addNavListener();
+
 // const npc = await loadNpc("eu6o7m1116mj6np5");
 
 // console.log(npc);

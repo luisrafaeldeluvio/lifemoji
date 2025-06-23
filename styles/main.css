@@ -42,7 +42,7 @@
   height: 93%;
 }
 
-.main__journal > * {
+.main__journal > article {
   display: none;
 }
 
@@ -50,7 +50,7 @@
   display: block !important; 
 }
 
-.main__journal__container {
+.main__journal__journal {
   position: relative;
   box-shadow:
     #e3dceb 1px 1px,
