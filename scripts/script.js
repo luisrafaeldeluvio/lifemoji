@@ -1,11 +1,10 @@
-import { Npc } from "./model/npc.js";
-import { Player } from "./model/player.js";
-import { renderJournal } from "./data/renderJournal.js";
 import { simpleEvent } from "./events.js";
 import { readSave, readKey, writeSave } from "./data/saveManager.js";
-import { loadPlayer } from "./data/playerData.js";
+import { playerData } from "./data/playerData.js";
 import { loadNpc } from "./data/npcData.js";
 import { Dialog } from "./createDialog.js";
+import { updateRender } from "./updateRender.js";
+import { ageUp } from "./ageUp.js";
 
 // function newPlayer() {
 //   const playerA = new Player({ relations: "player" });
@@ -22,38 +21,13 @@ import { Dialog } from "./createDialog.js";
 
 // newPlayer();
 
-const player = await loadPlayer();
+const player = playerData;
+
+console.log(player);
 
 document.querySelector(".js-growup").addEventListener("click", () => {
   ageUp();
 });
-
-async function ageUp() {
-  player.age++;
-  player.stats._joy++;
-  writeSave("player", player);
-  console.log(player);
-  await simpleEvent(
-    `your age is ${player.age}, your happiness is ${player.stats._joy}`,
-  );
-  updateRender();
-}
-
-async function updateRender() {
-  const query = {
-    ".js-journal": await renderJournal(),
-    ".js-fullname": player.fullName,
-    ".js-stat-joy": player.stats._joy,
-    ".js-stat-health": player.stats._health,
-    ".js-stat-smarts": player.stats._smarts,
-    ".js-stat-looks": player.stats._looks,
-    ".js-profile": `${player.sex}, ${player.age}`,
-  };
-
-  for (const [key, value] of Object.entries(query)) {
-    document.querySelector(key).innerHTML = value;
-  }
-}
 
 updateRender();
 

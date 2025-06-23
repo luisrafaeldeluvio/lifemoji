@@ -1,4 +1,4 @@
-import { loadPlayer } from "./data/playerData";
+import { playerData } from "./data/playerData";
 
 class Dialog {
   static isQueued = false;
@@ -48,7 +48,7 @@ class Dialog {
     }
 
     if (stats.length > 0) {
-      const player = await loadPlayer();
+      const player = playerData;
       const element = document.createElement("div");
 
       element.className = "dialog__stats";
