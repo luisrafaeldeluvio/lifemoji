@@ -33,43 +33,43 @@ class Npc extends Skeleton {
     writeSave(
       "npc",
       {
-        _id: this._id,
-        _birthday: this._birthday,
-        _sex: this._sex,
-        _stats: this._stats,
-        _location: this._location,
-        _firstname: this._firstname,
-        _lastname: this._lastname,
-        _age: this._age,
-        _relations: this._relations,
+        id: this.id,
+        birthday: this.birthday,
+        sex: this.sex,
+        stats: this.stats,
+        location: this.location,
+        firstname: this.firstname,
+        lastname: this.lastname,
+        age: this.age,
+        relations: this.relations,
       },
-      this._key,
+      this.key,
     );
   }
 
   async conversation() {
-    this._stats._relationship += 10;
+    this.stats.relationship += 10;
     this.#saveNpcData();
-    simpleEvent(`You talked with ${this._firstname}`);
+    simpleEvent(`You talked with ${this.firstname}`);
   }
 
   async spendTime() {
-    simpleEvent(`You spent time with ${this._firstname}`);
+    simpleEvent(`You spent time with ${this.firstname}`);
     // new Dialog({
     //   text: `I spent time with ${this.firstName}`,
     // });
   }
 
   async askForMoney() {
-    if (this._stats._generosity > Npc.randomInt(0, 100)) {
-      simpleEvent(`${this._firstname} refused to give me money.`);
+    if (this.stats.generosity > Npc.randomInt(0, 100)) {
+      simpleEvent(`${this.firstname} refused to give me money.`);
       return;
     }
 
     let player = playerData;
     player.money += 100;
     writeSave("player", player);
-    simpleEvent(`i asked ${this._firstname} for money. i got 100`);
+    simpleEvent(`i asked ${this.firstname} for money. i got 100`);
   }
 }
 

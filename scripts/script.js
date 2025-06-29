@@ -36,8 +36,6 @@ document.querySelector(".js-growup").addEventListener("click", () => {
 
 updateRender();
 
-
-
 addNavListener();
 
 // const npc = await loadNpc("eu6o7m1116mj6np5");

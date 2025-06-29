@@ -12,7 +12,6 @@ class Player extends Skeleton {
     relations,
     stats,
     npcIds,
-    money,
   } = {}) {
     super({
       id,
@@ -25,24 +24,15 @@ class Player extends Skeleton {
       age,
       relations,
     });
-    this._npcIds = npcIds ?? [];
-    this._money = money ?? 0;
+    this.npcIds = npcIds ?? [];
   }
 
-  get npcIds() {
-    return this._npcIds;
+  get getNpcIds() {
+    return this.npcIds;
   }
 
-  get money() {
-    return this._money;
-  }
-
-  set npcIds(value) {
-    this._npcIds.push(value);
-  }
-
-  set money(value) {
-    this._money = value;
+  set setNpcIds(value) {
+    this.npcIds.push(value);
   }
 }
 

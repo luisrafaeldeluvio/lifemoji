@@ -6,10 +6,10 @@ import { writeSave } from "./data/saveManager.js";
 async function ageUp() {
   const player = await playerData();
   player.age++;
-  player.stats._joy++;
+  player.stats.joy++;
   writeSave("player", player);
   await simpleEvent(
-    `your age is ${player.age}, your happiness is ${player.stats._joy}`,
+    `your age is ${player.age}, your happiness is ${player.stats.joy}`,
   );
   updateRender();
 }

@@ -14,17 +14,16 @@ class Skeleton {
     relations,
     stats,
   } = {}) {
-    this._id = id ?? Skeleton.#newId();
-    this._birthday = birthday ?? Skeleton.#newBirthday();
-    this._age = age ?? 0;
-    this._sex = sex ?? Skeleton.#newSex();
-    this._location = location ?? Skeleton.#newLocation();
-    this._firstname =
-      firstname ?? Skeleton.#newFirstName(this._location, this._sex);
-    this._lastname =
-      lastname ?? Skeleton.#newLastName(this._location, this._sex);
-    this._relations = relations;
-    this._stats = stats ?? new Stats({ relations });
+    this.id = id ?? Skeleton.#newId();
+    this.birthday = birthday ?? Skeleton.#newBirthday();
+    this.age = age ?? 0;
+    this.sex = sex ?? Skeleton.#newSex();
+    this.location = location ?? Skeleton.#newLocation();
+    this.firstname =
+      firstname ?? Skeleton.#newFirstName(this.location, this.sex);
+    this.lastname = lastname ?? Skeleton.#newLastName(this.location, this.sex);
+    this.relations = relations;
+    this.stats = stats ?? new Stats({ relations });
   }
 
   static randomInt(min, max) {
@@ -57,7 +56,7 @@ class Skeleton {
   }
 
   static #newLocation() {
-    // if (Skeleton._randomInt(1, 100) < 90 && player.location !== undefined) {
+    // if (Skeleton.randomInt(1, 100) < 90 && player.location !== undefined) {
     //     return player.location;
     // } else {
     const loc = Object.keys(places);
@@ -65,80 +64,80 @@ class Skeleton {
     // }
   }
 
-  get id() {
-    return this._id;
+  get getId() {
+    return this.id;
   }
 
-  get birthday() {
-    return this._birthday;
+  get getBirthday() {
+    return this.birthday;
   }
 
-  get age() {
-    return this._age;
+  get getSge() {
+    return this.age;
   }
 
-  get sex() {
-    return this._sex;
+  get getDex() {
+    return this.sex;
   }
 
-  get location() {
-    return this._location;
+  get getLocation() {
+    return this.location;
   }
 
-  get firstName() {
-    return this._firstname;
+  get getFirstName() {
+    return this.firstname;
   }
 
-  get lastName() {
-    return this._lastname;
+  get getLastName() {
+    return this.lastname;
   }
 
-  get fullName() {
-    return `${this._firstname} ${this._lastname}`;
+  get getFullName() {
+    return `${this.firstname} ${this.lastname}`;
   }
 
-  get stats() {
-    return this._stats;
+  get getStats() {
+    return this.stats;
   }
 
-  get relations() {
-    return this._relations;
+  get getRelations() {
+    return this.relations;
   }
 
-  set id(value) {
-    this._id = value;
+  set setId(value) {
+    this.id = value;
   }
 
-  set birthday(value) {
-    this._birthday = value;
+  set setBirthday(value) {
+    this.birthday = value;
   }
 
-  set age(value) {
-    this._age = value;
+  set setAge(value) {
+    this.age = value;
   }
 
-  set sex(value) {
-    this._sex = value;
+  set setSex(value) {
+    this.sex = value;
   }
 
-  set location(value) {
-    this._location = value;
+  set setLocation(value) {
+    this.location = value;
   }
 
-  set firstName(value) {
-    this._firstname = value;
+  set setFirstName(value) {
+    this.firstname = value;
   }
 
-  set lastName(value) {
-    this._lastname = value;
+  set setLastName(value) {
+    this.lastname = value;
   }
 
-  set stats(value) {
-    this._stats = Math.max(0, Math.min(value, 100));
+  set setStats(value) {
+    this.stats = Math.max(0, Math.min(value, 100));
   }
 
-  set relations(value) {
-    this._relations = value;
+  set setRelations(value) {
+    this.relations = value;
   }
 }
 

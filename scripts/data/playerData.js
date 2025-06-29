@@ -5,16 +5,16 @@ async function playerData() {
   const key = await readKey("player");
   const data = await readSave("player", key);
   return new Player({
-    id: data._id,
-    birthday: data._birthday,
-    age: data._age,
-    sex: data._sex,
-    stats: data._stats,
-    location: data._location,
-    firstname: data._firstname,
-    lastname: data._lastname,
-    npcIds: data._npcIds,
-    money: data._money,
+    id: data.id,
+    birthday: data.birthday,
+    age: data.age,
+    sex: data.sex,
+    stats: data.stats,
+    location: data.location,
+    firstname: data.firstname,
+    lastname: data.lastname,
+    npcIds: data.npcIds,
+    money: data.money,
   });
 }
 

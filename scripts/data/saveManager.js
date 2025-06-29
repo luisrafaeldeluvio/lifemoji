@@ -2,8 +2,8 @@ function initSave() {
   const request = window.indexedDB.open("PlayerData", 1);
   request.onupgradeneeded = () => {
     const db = request.result;
-    const playerStore = db.createObjectStore("player", { keyPath: "_id" });
-    const npcStore = db.createObjectStore("npc", { keyPath: "_id" });
+    const playerStore = db.createObjectStore("player", { keyPath: "id" });
+    const npcStore = db.createObjectStore("npc", { keyPath: "id" });
     const journalStore = db.createObjectStore("journal", {
       autoIncrement: true,
     });
@@ -12,7 +12,7 @@ function initSave() {
       unique: false,
     });
 
-    npcStore.createIndex("relations", "_relations");
+    npcStore.createIndex("relations", "relations");
   };
 }
 

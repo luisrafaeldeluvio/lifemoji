@@ -7,10 +7,10 @@ async function updateRender() {
   const query = {
     ".js-journal": await renderJournal(),
     ".js-fullname": player.fullName,
-    ".js-stat-joy": player.stats._joy,
-    ".js-stat-health": player.stats._health,
-    ".js-stat-smarts": player.stats._smarts,
-    ".js-stat-looks": player.stats._looks,
+    ".js-stat-joy": player.stats.joy,
+    ".js-stat-health": player.stats.health,
+    ".js-stat-smarts": player.stats.smarts,
+    ".js-stat-looks": player.stats.looks,
     ".js-profile": `${player.sex}, ${player.age}`,
   };
 
