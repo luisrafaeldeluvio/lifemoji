@@ -2,7 +2,7 @@ const journalContainer = document.querySelector(".js-journal");
 const journalStyle = window.getComputedStyle(journalContainer);
 const journalAmount = Math.floor(
   ((parseInt(journalStyle.height) / parseInt(journalStyle.fontSize)) * 0.85) /
-    2,
+  2,
 );
 
 function loadJournal() {
