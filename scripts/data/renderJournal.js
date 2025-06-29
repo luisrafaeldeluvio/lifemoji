@@ -2,12 +2,12 @@ const journalContainer = document.querySelector(".js-journal");
 const journalStyle = window.getComputedStyle(journalContainer);
 const journalAmount = Math.floor(
   ((parseInt(journalStyle.height) / parseInt(journalStyle.fontSize)) * 0.85) /
-  2,
+    2,
 );
 
 function loadJournal() {
   const journal = [];
-  const request = window.indexedDB.open("PlayerData", 1);
+  const request = window.indexedDB.open("gameData", 1);
   let amount = journalAmount;
 
   return new Promise((resolve, reject) => {

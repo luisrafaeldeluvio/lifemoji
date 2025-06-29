@@ -1,6 +1,6 @@
 import { simpleEvent } from "../events.js";
 import { playerData } from "../data/playerData.js";
-import { readSave, writeSave } from "../data/saveManager.js";
+import { readData, writeData } from "../data/saveManager.js";
 import { Skeleton } from "./skeleton.js";
 // import { Dialog } from "../createDialog.js";
 
@@ -30,7 +30,7 @@ class Npc extends Skeleton {
   }
 
   #saveNpcData() {
-    writeSave(
+    writeData(
       "npc",
       {
         id: this.id,
@@ -68,7 +68,7 @@ class Npc extends Skeleton {
 
     let player = playerData;
     player.money += 100;
-    writeSave("player", player);
+    writeData("player", player);
     simpleEvent(`i asked ${this.firstname} for money. i got 100`);
   }
 }

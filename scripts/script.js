@@ -1,5 +1,5 @@
 import { simpleEvent } from "./events.js";
-import { readSave, readKey, writeSave } from "./data/saveManager.js";
+import { readData, readKey, writeData } from "./data/saveManager.js";
 import { playerData } from "./data/playerData.js";
 import { loadNpc } from "./data/npcData.js";
 import { Dialog } from "./createDialog.js";
@@ -11,20 +11,20 @@ import { addNavListener } from "./addNavListener.js";
 
 // console.log(true);
 
-// function newPlayer() {
-//   const playerA = new Player({ relations: "player" });
-//   const npc = new Npc({ relations: "parent" });
-//   const npc2 = new Npc({ relations: "parent" });
-//   playerA.npcIds = npc.id;
-//   playerA.npcIds = npc2.id;
-//   console.log(playerA, npc, npc2);
+function newPlayer() {
+  const playerA = new Player({ relations: "player" });
+  const npc = new Npc({ relations: "parent" });
+  const npc2 = new Npc({ relations: "parent" });
+  playerA.npcIds = npc.id;
+  playerA.npcIds = npc2.id;
+  console.log(playerA, npc, npc2);
 
-//   writeSave("player", playerA);
-//   writeSave("npc", npc);
-//   writeSave("npc", npc2);
-// }
+  writeData("player", playerA);
+  writeData("npc", npc);
+  writeData("npc", npc2);
+}
 
-// newPlayer();
+newPlayer();
 
 const player = await playerData();
 

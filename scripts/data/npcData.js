@@ -1,8 +1,8 @@
 import { Npc } from "../model/npc.js";
-import { readSave } from "./saveManager.js";
+import { readData } from "./saveManager.js";
 
 async function loadNpc(key) {
-  const data = await readSave("npc", key);
+  const data = await readData("npc", key);
   return new Npc({
     id: data.id,
     birthday: data.birthday,

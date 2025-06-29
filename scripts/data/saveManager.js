@@ -1,48 +1,52 @@
-function initSave() {
-  const request = window.indexedDB.open("PlayerData", 1);
-  request.onupgradeneeded = () => {
-    const db = request.result;
-    const playerStore = db.createObjectStore("player", { keyPath: "id" });
-    const npcStore = db.createObjectStore("npc", { keyPath: "id" });
-    const journalStore = db.createObjectStore("journal", {
-      autoIncrement: true,
-    });
+const request = window.indexedDB.open("gameData", 1);
 
-    journalStore.createIndex("year", "year", {
-      unique: false,
-    });
+request.onupgradeneeded = () => {
+  const db = request.result;
 
-    npcStore.createIndex("relations", "relations");
-  };
-}
+  const playerDataStore = db.createObjectStore("player", { keyPath: "id" });
 
-function readSave(STORE, KEY) {
-  const request = window.indexedDB.open("PlayerData", 1);
+  const npcDataStore = db.createObjectStore("npc", { keyPath: "id" });
+  npcDataStore.createIndex("relations", "relations");
+
+  const journalDataStore = db.createObjectStore("journal", {
+    autoIncrement: true,
+  });
+  journalDataStore.createIndex("year", "year", {
+    unique: false,
+  });
+};
+
+function readData(store, key) {
+  const request = window.indexedDB.open("gameData", 1);
   return new Promise((resolve, reject) => {
     request.onsuccess = () => {
       const db = request.result;
-      const transaction = db.transaction(STORE, "readonly");
-      const store = transaction.objectStore(STORE);
+      const transaction = db.transaction(store, "readonly");
+      const txStore = transaction.objectStore(store);
 
-      const getReq = store.get(KEY);
+      const getReq = txStore.get(key);
 
       getReq.onsuccess = () => resolve(getReq.result);
 
       transaction.oncomplete = () => db.close;
     };
+    request.onerror = (event) => {
+      console.error("Error opening IndexedDB:", event.target.error);
+      reject(event.target.error);
+    };
   });
 }
 
-function readSaveByIndex(STORE, INDEX, KEY) {
-  const request = window.indexedDB.open("PlayerData", 1);
+function readDataByIndex(store, index, key) {
+  const request = window.indexedDB.open("gameData", 1);
   return new Promise((resolve, reject) => {
     request.onsuccess = () => {
       const db = request.result;
-      const transaction = db.transaction(STORE, "readonly");
-      const store = transaction.objectStore(STORE);
+      const transaction = db.transaction(store, "readonly");
+      const txStore = transaction.objectStore(store);
 
-      const index = store.index(INDEX);
-      const getAllReq = index.getAll(KEY);
+      const txIndex = txStore.index(index);
+      const getAllReq = txIndex.getAll(key);
 
       getAllReq.onsuccess = () => {
         resolve(getAllReq.result);
@@ -50,28 +54,37 @@ function readSaveByIndex(STORE, INDEX, KEY) {
 
       transaction.oncomplete = () => db.close;
     };
+    request.onerror = (event) => {
+      console.error("Error opening IndexedDB:", event.target.error);
+      reject(event.target.error);
+    };
   });
 }
 
-function writeSave(STORE, DATA, KEY) {
-  const request = window.indexedDB.open("PlayerData", 1);
+function writeData(store, data, key) {
+  const request = window.indexedDB.open("gameData", 1);
   request.onsuccess = () => {
     const db = request.result;
-    const transaction = db.transaction(STORE, "readwrite");
-    const store = transaction.objectStore(STORE);
+    const transaction = db.transaction(store, "readwrite");
+    const txStore = transaction.objectStore(store);
 
-    store.put(DATA, KEY);
+    txStore.put(data, key);
+
+    transaction.oncomplete = () => db.close;
+  };
+  request.onerror = (event) => {
+    console.error("Error opening IndexedDB:", event.target.error);
   };
 }
 
-function readKey(STORE) {
-  const request = window.indexedDB.open("PlayerData", 1);
+function readKey(store) {
+  const request = window.indexedDB.open("gameData", 1);
   return new Promise((resolve, reject) => {
     request.onsuccess = () => {
       const db = request.result;
-      const transaction = db.transaction(STORE, "readonly");
-      const store = transaction.objectStore(STORE);
-      const cursorReq = store.openKeyCursor(null, "prev");
+      const transaction = db.transaction(store, "readonly");
+      const txStore = transaction.objectStore(store);
+      const cursorReq = txStore.openKeyCursor(null, "prev");
 
       cursorReq.onsuccess = (event) => {
         const cursor = event.target.result;
@@ -79,10 +92,14 @@ function readKey(STORE) {
           resolve(cursor.key);
         }
       };
+
+      transaction.oncomplete = () => db.close;
+    };
+    request.onerror = (event) => {
+      console.error("Error opening IndexedDB:", event.target.error);
+      reject(event.target.error);
     };
   });
 }
 
-initSave();
-
-export { readSave, readKey, readSaveByIndex, writeSave };
+export { readData, readKey, readDataByIndex, writeData };
