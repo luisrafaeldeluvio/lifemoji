@@ -1,9 +1,8 @@
 import { Player } from "../model/player.js";
-import { readKey, readData } from "./saveManager.js";
+import { readData } from "./dataManager.js";
 
 async function playerData() {
-  const key = await readKey("player");
-  const data = await readData("player", key);
+  const data = await readData("player", "player");
   return new Player({
     id: data.id,
     birthday: data.birthday,

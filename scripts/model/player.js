@@ -24,6 +24,7 @@ class Player extends Skeleton {
       age,
       relations,
     });
+    this.id = "player";
     this.npcIds = npcIds ?? [];
   }
 

@@ -77,29 +77,4 @@ function writeData(store, data, key) {
   };
 }
 
-function readKey(store) {
-  const request = window.indexedDB.open("gameData", 1);
-  return new Promise((resolve, reject) => {
-    request.onsuccess = () => {
-      const db = request.result;
-      const transaction = db.transaction(store, "readonly");
-      const txStore = transaction.objectStore(store);
-      const cursorReq = txStore.openKeyCursor(null, "prev");
-
-      cursorReq.onsuccess = (event) => {
-        const cursor = event.target.result;
-        if (cursor) {
-          resolve(cursor.key);
-        }
-      };
-
-      transaction.oncomplete = () => db.close;
-    };
-    request.onerror = (event) => {
-      console.error("Error opening IndexedDB:", event.target.error);
-      reject(event.target.error);
-    };
-  });
-}
-
-export { readData, readKey, readDataByIndex, writeData };
+export { readData, readDataByIndex, writeData };

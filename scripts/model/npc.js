@@ -1,6 +1,6 @@
 import { simpleEvent } from "../events.js";
 import { playerData } from "../data/playerData.js";
-import { readData, writeData } from "../data/saveManager.js";
+import { readData, writeData } from "../data/dataManager.js";
 import { Skeleton } from "./skeleton.js";
 // import { Dialog } from "../createDialog.js";
 

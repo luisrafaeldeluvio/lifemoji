@@ -1,5 +1,5 @@
 import { simpleEvent } from "./events.js";
-import { readData, readKey, writeData } from "./data/saveManager.js";
+import { readData, writeData } from "./data/dataManager.js";
 import { playerData } from "./data/playerData.js";
 import { loadNpc } from "./data/npcData.js";
 import { Dialog } from "./createDialog.js";

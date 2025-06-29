@@ -1,8 +1,7 @@
-import { readData, readKey, writeData } from "./data/saveManager.js";
+import { readData, writeData } from "./data/dataManager.js";
 
 async function simpleEvent(event) {
-  const key = await readKey("player");
-  const data = await readData("player", key);
+  const data = await readData("player", "player");
   writeData("journal", { year: data.age, log: event });
 }
 
