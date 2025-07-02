@@ -14,12 +14,15 @@
   height: 100px;
 }
 
-.panel__profile {
-  transform: rotate(2deg);
+.card--no-shadow {
+  box-shadow: none;
+}
+
+.profile {
   background: white;
 }
 
-.panel__profile img {
+.profile img {
   display: block;
   margin-top: 2.5%;
   margin-right: auto;
@@ -29,7 +32,12 @@
   height: 80%;
 }
 
-.panel__profile::before {
+.profile__text {
+  width: 100%;
+  text-align: center;
+}
+
+.profile--pinned::before {
   display: inline-block;
   position: absolute;
   bottom: 85%;
@@ -40,6 +48,15 @@
   width: 10px;
   height: 10px;
   content: "";
+}
+
+.profile--crooked {
+  transform: rotate(2deg);
+}
+
+.profile--size-small {
+  width: 80px !important;
+  height: 80px !important;
 }
 
 .panel__info {
