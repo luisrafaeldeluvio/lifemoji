@@ -9,9 +9,11 @@
   </head>
   <body>
     <aside class="panel">
-      <section class="panel__profile card">
+      <section class="profile profile--pinned profile--crooked card">
         <img src="./assets/smart_car.jpg" alt="profile" />
-        <span class="text--m js-profile">male, 21</span>
+        <div class="profile__text">
+          <span class="text--m js-profile">male, 21</span>
+        </div>
       </section>
 
       <section class="panel__info card">
@@ -39,11 +41,18 @@
 
       <div class="main__journal">
         <article class="main__journal__social">
-          <div class="main__journal__paper">
-            <li>Family</li>
-            <li>Friends</li>
-            <li>Pets</li>
-          </div>
+          <nav>
+            <ul>
+              <li>Family</li>
+              <li>Friends</li>
+              <li>Lover</li>
+            </ul>
+          </nav>
+          <div class="main__journal__family"></div>
+          <div class="main__journal__friends"></div>
+          <div
+            class="main__journal__lovers main__journal__social--opened"
+          ></div>
         </article>
         <article class="main__journal__finance">sg</article>
         <article class="main__journal__achievements">gfd</article>

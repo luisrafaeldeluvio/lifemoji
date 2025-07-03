@@ -78,7 +78,6 @@
   width: 100%;
   height: 100%;
   font-size: var(--text-m);
-  white-space: pre;
 }
 
 .main__journal > article > div {
@@ -93,7 +92,19 @@
   display: block !important;
 }
 
-.main__journal__paper {
+.main__journal__journal {
+  white-space: pre;
+}
+
+.main__journal__social > div {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 5em 0.5em;
+}
+
+.main__journal__social--opened {
+  display: flex !important;
 }
 
 .main__primary-nav {
