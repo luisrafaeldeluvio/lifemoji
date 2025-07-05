@@ -1,7 +1,7 @@
 function renderNpcProfiles() {
   console.log(true);
 
-  const parent = document.querySelector(".main__journal__social");
+  const parent = document.querySelector(".journal__social");
 
   console.log(parent.children);
 
@@ -9,12 +9,16 @@ function renderNpcProfiles() {
     console.log(i);
     let k = 0;
     for (let j = 0; j < 9; j++) {
-      i.innerHTML += `<section class="profile profile--size-small card card--no-shadow">
-                <img src="./assets/smart_car.jpg" alt="profile" />
-                <div class="profile__text">
-                  <span class="text--m js-profile">male, ${j + k}</span>
-                </div>
-              </section>`;
+      i.innerHTML += `
+        <section class="profile profile--size-small card card--no-shadow">
+          <img src="./assets/smart_car.jpg" alt="profile" />
+          <div class="profile__text">
+            <span class="text--m js-profile">male, ${j + k}</span>
+          </div>
+        </section>`;
+
+      // TODO: Add a click listener to each profile
+      //       that opens a modal with more details about the profile.
     }
     k++;
   }

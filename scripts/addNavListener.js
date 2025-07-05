@@ -10,7 +10,7 @@ function addNavListener() {
     element.addEventListener("click", () => {
       removeOpenMod();
       document
-        .querySelector(`.main__journal__${element.id}`)
+        .querySelector(`.journal__${element.id}`)
         .classList.add("main__journal--opened");
     });
   }
@@ -21,8 +21,21 @@ function addNavListener() {
       removeOpenMod();
 
       document
-        .querySelector(`.main__journal__${element.id}`)
+        .querySelector(`.journal__${element.id}`)
         .classList.add("main__journal--opened");
+    });
+  }
+
+  for (const element of document.querySelector(".social__nav ul").children) {
+    element.addEventListener("click", () => {
+      for (const element of document.querySelector(".journal__social")
+        .children) {
+        element.classList.remove("journal__social--opened");
+      }
+
+      document
+        .querySelector(`.journal__${element.id}`)
+        .classList.add("journal__social--opened");
     });
   }
 }
